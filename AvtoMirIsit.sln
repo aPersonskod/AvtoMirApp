@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoMirIsit", "AvtoMirIsit\AvtoMirIsit.csproj", "{967E048C-8048-4B3F-B3FA-1CBBBC6FACBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoMirClient", "AvtoMirClient\AvtoMirClient.csproj", "{A620C69F-210E-4856-9929-153C086097B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{967E048C-8048-4B3F-B3FA-1CBBBC6FACBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967E048C-8048-4B3F-B3FA-1CBBBC6FACBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967E048C-8048-4B3F-B3FA-1CBBBC6FACBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967E048C-8048-4B3F-B3FA-1CBBBC6FACBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A620C69F-210E-4856-9929-153C086097B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A620C69F-210E-4856-9929-153C086097B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A620C69F-210E-4856-9929-153C086097B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A620C69F-210E-4856-9929-153C086097B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
