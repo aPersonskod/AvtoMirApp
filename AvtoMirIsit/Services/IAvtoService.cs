@@ -1,6 +1,7 @@
 ﻿using AvtoMirIsit.DataContexts;
 using AvtoMirModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace AvtoMirIsit.Services;
 
@@ -17,6 +18,9 @@ public interface IDogovorService
 public interface IClientService
 {
     public DbSet<Client> GetAll();
+    Client Create(Client client);
+    Client Update(Client client);
+    void Delete(int id);
 }
 
 public interface IShopService
@@ -32,6 +36,9 @@ public interface ICarMakeService
 public interface IEmployeeService
 {
     public DbSet<Employee> GetAll();
+    Employee Create(Employee employee);
+    Employee Update(Employee employee);
+    void Delete(int id);
 }
 
 public interface IAutoTypeService
@@ -46,7 +53,6 @@ public class AvtoService : IAvtoService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<Auto> GetAll() => _dataContext.Autos;
 }
 
@@ -57,7 +63,6 @@ public class DogovorService : IDogovorService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<Dogovor> GetAll() => _dataContext.Dogovors;
 }
 
@@ -68,8 +73,26 @@ public class ClientService : IClientService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<Client> GetAll() => _dataContext.Clients;
+    public Client Create(Client client)
+    {
+        var lastClient = _dataContext.Clients.ToList().LastOrDefault();
+        client.Id = lastClient is null ? 1 : lastClient.Id + 1;
+        _dataContext.Database.ExecuteSqlRaw("INSERT INTO Клиент (id_клиента, ФИО, Адрес, Телефон) VALUES ({0}, {1}, {2}, {3})", 
+            client.Id, client.Fio, client.Adress, client.Mobile);
+        return client;
+    }
+    public Client Update(Client client)
+    {
+        _dataContext.Database.ExecuteSqlRaw(
+            "UPDATE Клиент SET ФИО={0}, Адрес={1}, Телефон={2} WHERE id_клиента={3}",
+            client.Fio, client.Adress, client.Mobile, client.Id);
+        return client;
+    }
+    public void Delete(int id)
+    {
+        _dataContext.Database.ExecuteSqlRaw("DELETE FROM Клиент WHERE id_клиента={0}", id);
+    }
 }
 
 public class ShopService : IShopService
@@ -79,7 +102,6 @@ public class ShopService : IShopService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<Shop> GetAll() => _dataContext.Shops;
 }
 
@@ -90,7 +112,6 @@ public class CarMakeService : ICarMakeService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<CarMake> GetAll() => _dataContext.CarMakes;
 }
 
@@ -101,8 +122,26 @@ public class EmployeeService : IEmployeeService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<Employee> GetAll() => _dataContext.Employees;
+    public Employee Create(Employee employee)
+    {
+        var lastEmployee = _dataContext.Employees.ToList().LastOrDefault();
+        employee.Id = lastEmployee is null ? 1 : lastEmployee.Id + 1;
+        _dataContext.Database.ExecuteSqlRaw("INSERT INTO Сотрудник (id_сотрудника, ФИО, Телефон, id_магазина) VALUES ({0}, {1}, {2}, {3})", 
+            employee.Id, employee.Fio, employee.Mobile, employee.ShopId);
+        return employee;
+    }
+    public Employee Update(Employee employee)
+    {
+        _dataContext.Database.ExecuteSqlRaw(
+            "UPDATE Сотрудник SET ФИО={0}, Телефон={1}, id_магазина={2} WHERE id_сотрудника={3}",
+            employee.Fio, employee.Mobile, employee.ShopId, employee.Id);
+        return employee;
+    }
+    public void Delete(int id)
+    {
+        _dataContext.Database.ExecuteSqlRaw("DELETE FROM Сотрудник WHERE id_сотрудника={0}", id);
+    }
 }
 
 public class AutoTypeService : IAutoTypeService
@@ -112,6 +151,5 @@ public class AutoTypeService : IAutoTypeService
     {
         _dataContext = dataContext;
     }
-
     public DbSet<AutoType> GetAll() => _dataContext.AutoTypes;
 }

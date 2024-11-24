@@ -12,12 +12,13 @@
         <StackPanel>
             <TextBlock>Current client</TextBlock>
             <TextBlock Text="ФИО:"/>
-            <TextBox Text="{Binding Client.Fio}"/>
+            <TextBox Text="{Binding Client.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Адрес:"/>
-            <TextBox Text="{Binding Client.Fio}"/>
+            <TextBox Text="{Binding Client.Adress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Телефон:"/>
-            <TextBox Text="{Binding Client.Fio}"/>
+            <TextBox Text="{Binding Client.Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Command="{Binding CmdSave}">Сохранить</Button>
+            <Button Command="{Binding CmdGoBack}">Назад</Button>
         </StackPanel>
     </Grid>
 </UserControl>

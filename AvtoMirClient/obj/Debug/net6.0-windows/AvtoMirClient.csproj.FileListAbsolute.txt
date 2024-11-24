@@ -43,3 +43,4 @@ D:\prog\education\AvtoMirIsit\AvtoMirClient\obj\Debug\net6.0-windows\View\UCClie
 D:\prog\education\AvtoMirIsit\AvtoMirClient\obj\Debug\net6.0-windows\View\UCClients.baml
 D:\prog\education\AvtoMirIsit\AvtoMirClient\obj\Debug\net6.0-windows\View\UCEmployee.baml
 D:\prog\education\AvtoMirIsit\AvtoMirClient\obj\Debug\net6.0-windows\View\UCEmployees.baml
+D:\prog\education\AvtoMirIsit\AvtoMirClient\obj\Debug\net6.0-windows\StylesResourceDictionary.baml

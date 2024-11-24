@@ -1,4 +1,5 @@
 using AvtoMirIsit.Services;
+using AvtoMirModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,26 @@ public class EmployeeController : ControllerBase
     [HttpGet("getAll")]
     public IActionResult GetAll()
     {
-        var rez = _service.GetAll().FromSql($"SELECT * FROM Сотрудник").ToList();
+        var rez = _service.GetAll().FromSql($"SELECT * FROM Сотрудник").ToList()?.OrderBy(x => x.Id);
         return Ok(rez);
+    }
+    
+    [HttpPost("create")]
+    public Employee Create(Employee employee)
+    {
+        return _service.Create(employee);
+    }
+    
+    [HttpPatch("update")]
+    public Employee Update(Employee employee)
+    {
+        return _service.Update(employee);
+    }
+    
+    [HttpDelete("delete/{id:int}")]
+    public IActionResult Delete(int id)
+    {
+        _service.Delete(id);
+        return Ok();
     }
 }

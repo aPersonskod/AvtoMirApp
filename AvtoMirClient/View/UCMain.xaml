@@ -14,7 +14,7 @@
             <Button Command="{Binding CmdGoToAvtoCatalog}">Каталог Автомобилей</Button>
             <Button Command="{Binding CmdGoToOrders}">Заказы</Button>
             <Button Command="{Binding CmdGoToClients}">Клиенты</Button>
-            <Button Command="{Binding CmdGoToEmployees}">Сотружники</Button>
+            <Button Command="{Binding CmdGoToEmployees}">Сотрудники</Button>
         </StackPanel>
     </Grid>
 </UserControl>

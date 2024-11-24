@@ -83,8 +83,6 @@ public class Employee
     [Key] 
     [Column("id_сотрудника")]
     public int Id { get; set; }
-    [Column("Марка")]
-    public string Mark { get; set; }
     [Column("ФИО")]
     public string Fio { get; set; }
     [Column("Телефон")]

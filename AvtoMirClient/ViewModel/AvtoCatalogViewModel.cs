@@ -31,23 +31,7 @@ public class AvtoCatalogViewModel : ObservableObject, IInitable
 
     public async Task Init()
     {
-        await SetAutos();
-    }
-
-    private async Task SetAutos()
-    {
-        using var client = new HttpClient();
-        var response = await client.GetAsync("https://localhost:7258/Auto/getAll");
-        response.EnsureSuccessStatusCode();
-        if (response.IsSuccessStatusCode)
-        {
-            var result = await response.Content.ReadFromJsonAsync<List<Auto>>();
-            Autos = result != null ? new ObservableCollection<Auto>(result) : new ObservableCollection<Auto>();
-        }
-        else
-        {
-            $"server error code {response.StatusCode}".Show("Error");
-        }
+        Autos = await "https://localhost:7258/Auto/getAll".GetQuery<Auto>();
     }
 
     private async Task CmdNavigateToAvtoHandler(object auto)

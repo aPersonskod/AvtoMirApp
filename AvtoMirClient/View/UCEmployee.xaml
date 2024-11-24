@@ -9,6 +9,16 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        
+        <StackPanel>
+            <TextBlock>Сотрудник</TextBlock>
+            <TextBlock Text="ФИО:"/>
+            <TextBox Text="{Binding Employee.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Телефон:"/>
+            <TextBox Text="{Binding Employee.Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Магазин:"/>
+            <TextBox Text="{Binding Employee.ShopId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Command="{Binding CmdSave}">Сохранить</Button>
+            <Button Command="{Binding CmdGoBack}">Назад</Button>
+        </StackPanel>
     </Grid>
 </UserControl>
