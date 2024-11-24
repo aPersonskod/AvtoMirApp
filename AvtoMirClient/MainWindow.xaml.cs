@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AvtoMirClient.DTO;
 
 namespace AvtoMirClient
 {
@@ -25,37 +26,23 @@ namespace AvtoMirClient
         public MainWindow()
         {
             InitializeComponent();
-            GetInfo();
+            //GetInfo();
         }
 
-        private async void GetInfo()
+        /*private async void GetInfo()
         {
             var message = "";
-            using (var client = new HttpClient())
+            using var client = new HttpClient();
+            var response = await client.GetAsync("https://localhost:7258/Auto/getAll2");
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
             {
-                var response = await client.GetAsync("https://localhost:7258/Auto/getAll2");
-                response.EnsureSuccessStatusCode();
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadFromJsonAsync<List<AutoDto>>();
-                }
-                else
-                {
-                    message = $"server error code {response.StatusCode}";
-                }
+                var result = await response.Content.ReadFromJsonAsync<List<AutoDto>>();
             }
-        }
-    }
-
-    public class AutoDto
-    {
-        public int id { get; set; }
-        public int regNumber { get; set; }
-        public string vinNumber { get; set; }
-        public DateTime creationYear { get; set; }
-        public int price { get; set; }
-        public string color { get; set; }
-        public int idType { get; set; }
-        public string image { get; set; }
+            else
+            {
+                message = $"server error code {response.StatusCode}";
+            }
+        }*/
     }
 }

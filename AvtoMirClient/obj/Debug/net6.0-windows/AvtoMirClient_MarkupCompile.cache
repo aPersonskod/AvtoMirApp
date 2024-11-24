@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\prog\education\AvtoMirIsit\AvtoMirClient\App.xaml
-11407045341
+11-1813014452
 
-4-1457437
-1951304188139
-MainWindow.xaml;
+261991538238
+196914316951
+MainWindow.xaml;NavigationResourceDictionary.xaml;View\UCAutoCreation.xaml;View\UCAvto.xaml;View\UCClient.xaml;View\UCClients.xaml;View\UCCurrentAvto.xaml;View\UCEmployee.xaml;View\UCEmployees.xaml;View\UCMain.xaml;View\UCOrders.xaml;
 
 False
 

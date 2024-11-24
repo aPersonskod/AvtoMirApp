@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:AvtoMirClient.ViewModel"
+                    xmlns:view="clr-namespace:AvtoMirClient.View">
+    <DataTemplate DataType="{x:Type vm:AvtoCatalogViewModel}">
+        <view:UCAvto />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AutoCreationViewModel}">
+        <view:UCAutoCreation />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:MainViewModel}">
+        <view:UCMain />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:CurrentAvtoViewModel}">
+        <view:UCCurrentAvto/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:OrdersViewModel}">
+        <view:UCOrders/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ClientsViewModel}">
+        <view:UCClients/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ClientViewModel}">
+        <view:UCClient/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:EmployeesViewModel}">
+        <view:UCEmployees/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:EmployeeViewModel}">
+        <view:UCEmployee/>
+    </DataTemplate>
+</ResourceDictionary>

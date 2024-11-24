@@ -14,14 +14,14 @@ public class AutoController : ControllerBase
         _service = service;
     }
 
-    [HttpGet("getAll")]
+    [HttpGet("getAllEntity")]
     public IActionResult GetAll()
     {
         var rez = _service.GetAll();
         return Ok(rez);
     }
 
-    [HttpGet("getAll2")]
+    [HttpGet("getAll")]
     public IActionResult GetAll2()
     {
         var rez = _service.GetAll().FromSql($"SELECT * FROM Автомобиль").ToList();

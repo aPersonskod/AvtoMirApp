@@ -35,3 +35,5 @@ D:\prog\education\AvtoMirIsit\AvtoMirIsit\bin\Debug\net7.0\Microsoft.EntityFrame
 D:\prog\education\AvtoMirIsit\AvtoMirIsit\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\prog\education\AvtoMirIsit\AvtoMirIsit\bin\Debug\net7.0\Npgsql.dll
 D:\prog\education\AvtoMirIsit\AvtoMirIsit\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\prog\education\AvtoMirIsit\AvtoMirIsit\bin\Debug\net7.0\AvtoMirModel.dll
+D:\prog\education\AvtoMirIsit\AvtoMirIsit\bin\Debug\net7.0\AvtoMirModel.pdb

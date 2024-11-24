@@ -5,13 +5,27 @@
       "CommunityToolkit.Mvvm/8.3.2": {
         "type": "package",
         "compile": {
-          "lib/net6.0/CommunityToolkit.Mvvm.dll": {}
+          "lib/net6.0/CommunityToolkit.Mvvm.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/CommunityToolkit.Mvvm.dll": {}
+          "lib/net6.0/CommunityToolkit.Mvvm.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "build": {
           "buildTransitive/CommunityToolkit.Mvvm.targets": {}
+        }
+      },
+      "AvtoMirModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/AvtoMirModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AvtoMirModel.dll": {}
         }
       }
     }
@@ -57,10 +71,16 @@
         "lib/netstandard2.1/CommunityToolkit.Mvvm.pdb",
         "lib/netstandard2.1/CommunityToolkit.Mvvm.xml"
       ]
+    },
+    "AvtoMirModel/1.0.0": {
+      "type": "project",
+      "path": "../AvtoMirModel/AvtoMirModel.csproj",
+      "msbuildProject": "../AvtoMirModel/AvtoMirModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
+      "AvtoMirModel >= 1.0.0",
       "CommunityToolkit.Mvvm >= 8.3.2"
     ]
   },
@@ -88,7 +108,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj": {
+              "projectPath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

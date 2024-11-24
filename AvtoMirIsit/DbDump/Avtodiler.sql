@@ -39,9 +39,9 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public."Автомобиль" (
     "id_автомобиля" integer NOT NULL,
-    "Номер" integer,
+    "Номер" character varying(8),
     "vin_номер" character varying(20),
-    "Год_выпуска" date,
+    "Год_выпуска" character varying(4),
     "Цена" integer,
     "Цвет" character varying(20),
     "id_типа" integer,
@@ -77,7 +77,7 @@ CREATE TABLE public."Клиент" (
     "id_клиента" integer NOT NULL,
     "ФИО" character varying(20),
     "Адрес" character varying(20),
-    "Телефон" integer
+    "Телефон" character varying(20)
 );
 
 
@@ -90,7 +90,7 @@ ALTER TABLE public."Клиент" OWNER TO postgres;
 
 CREATE TABLE public."Магазин" (
     "id_магазина" integer NOT NULL,
-    "Адрес" character varying(20)
+    "Адрес" character varying(50)
 );
 
 
@@ -103,7 +103,7 @@ ALTER TABLE public."Магазин" OWNER TO postgres;
 
 CREATE TABLE public."МаркаАвтомобиля" (
     "id_марка" integer NOT NULL,
-    "Марка" character varying(20)
+    "Марка" character varying(30)
 );
 
 
@@ -116,8 +116,8 @@ ALTER TABLE public."МаркаАвтомобиля" OWNER TO postgres;
 
 CREATE TABLE public."Сотрудник" (
     "id_сотрудника" integer NOT NULL,
-    "ФИО" character varying(20),
-    "Телефон" integer,
+    "ФИО" character varying(50),
+    "Телефон" character varying(20),
     "id_магазина" integer
 );
 
@@ -131,7 +131,7 @@ ALTER TABLE public."Сотрудник" OWNER TO postgres;
 
 CREATE TABLE public."ТипАвтомобиля" (
     "id_типа" integer NOT NULL,
-    "Модель" character varying(20),
+    "Модель" character varying(30),
     "id_марка" integer
 );
 

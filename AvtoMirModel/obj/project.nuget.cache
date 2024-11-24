@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Nt0XeoKVBE4TbS5/gERCEW0KLM6ysvdlkZnNd8lar8ltUJZa/6ffBf3RG7Jo3E0k6UqUAaBcX7Jt8l6M1pik+w==",
+  "success": true,
+  "projectFilePath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.31\\microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.31\\microsoft.windowsdesktop.app.ref.6.0.31.nupkg.sha512",
+    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.31\\microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512"
+  ],
+  "logs": []
+}

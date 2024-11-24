@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "AvtoMirIsit/1.0.0": {
         "dependencies": {
+          "AvtoMirModel": "1.0.0",
           "Microsoft.EntityFrameworkCore": "7.0.20",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.18",
           "Swashbuckle.AspNetCore": "6.2.3"
@@ -164,6 +165,11 @@
             "fileVersion": "6.2.3.0"
           }
         }
+      },
+      "AvtoMirModel/1.0.0": {
+        "runtime": {
+          "AvtoMirModel.dll": {}
+        }
       }
     }
   },
@@ -319,6 +325,11 @@
       "sha512": "sha512-bCRI87uKJVb4G+KURWm8LQrL64St04dEFZcF6gIM67Zc0Sr/N47EO83ybLMYOvfNdO1DCv8xwPcrz9J/VEhQ5g==",
       "path": "swashbuckle.aspnetcore.swaggerui/6.2.3",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+    },
+    "AvtoMirModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

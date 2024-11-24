@@ -1,0 +1,11 @@
+D:\prog\education\AvtoMirIsit\AvtoMirModel\bin\Debug\net6.0\AvtoMirModel.deps.json
+D:\prog\education\AvtoMirIsit\AvtoMirModel\bin\Debug\net6.0\AvtoMirModel.dll
+D:\prog\education\AvtoMirIsit\AvtoMirModel\bin\Debug\net6.0\AvtoMirModel.pdb
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.AssemblyInfoInputs.cache
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.AssemblyInfo.cs
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.csproj.CoreCompileInputs.cache
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.dll
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\refint\AvtoMirModel.dll
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.pdb
+D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\ref\AvtoMirModel.dll

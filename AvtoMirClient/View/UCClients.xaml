@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="AvtoMirClient.View.UCClients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AvtoMirClient.View"
+             xmlns:viewModel="clr-namespace:AvtoMirClient.ViewModel"
+             d:DataContext="{d:DesignInstance Type={x:Type viewModel:ClientsViewModel}}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <TextBlock>Клиенты</TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid ItemsSource="{Binding Clients, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО клиента" Binding="{Binding Fio}"/>
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding Adress}"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Mobile}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding Path=DataContext.CmdChangeClient, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCClients}}}"
+                                        CommandParameter="{Binding}">Изменить</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Button Command="{Binding CmdNavigateMain}" Margin="5">Главное меню</Button>
+            <Button Command="{Binding CmdGoToClient}" Margin="5">Создать клиента</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
