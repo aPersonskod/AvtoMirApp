@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoMirClient", "AvtoMirCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoMirModel", "AvtoMirModel\AvtoMirModel.csproj", "{A8B3E7DF-A0EC-49BC-8639-077A56794F7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalProj", "HospitalProj\HospitalProj.csproj", "{A1FA5731-E355-4917-82D4-2F40AF09CE71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A8B3E7DF-A0EC-49BC-8639-077A56794F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8B3E7DF-A0EC-49BC-8639-077A56794F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B3E7DF-A0EC-49BC-8639-077A56794F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1FA5731-E355-4917-82D4-2F40AF09CE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FA5731-E355-4917-82D4-2F40AF09CE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1FA5731-E355-4917-82D4-2F40AF09CE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FA5731-E355-4917-82D4-2F40AF09CE71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,16 @@
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.csproj.AssemblyReference.cache
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\MainWindow.g.cs
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\App.g.cs
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj_MarkupCompile.cache
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj_MarkupCompile.lref
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\HospitalProj.exe.config
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\HospitalProj.exe
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\HospitalProj.pdb
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\MainWindow.baml
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.g.resources
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.GeneratedMSBuildEditorConfig.editorconfig
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.AssemblyInfoInputs.cache
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.AssemblyInfo.cs
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.csproj.CoreCompileInputs.cache
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.exe
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\HospitalProj.pdb

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "IwVYKResN0qEtUI00jJz51hMhaIgujJ6pIQxkbF2bSTeutMRoC1rPR2As22/uyjVb//eCr4/OtTzdi+9rdYtDg==",
+  "success": true,
+  "projectFilePath": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net46\\1.0.3\\microsoft.netframework.referenceassemblies.net46.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
