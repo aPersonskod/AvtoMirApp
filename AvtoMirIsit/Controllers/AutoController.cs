@@ -1,4 +1,5 @@
 ﻿using AvtoMirIsit.Services;
+using AvtoMirModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,5 +28,11 @@ public class AutoController : ControllerBase
         var rez = _service.GetAll().FromSql($"SELECT * FROM Автомобиль").ToList();
         //var rez = _service.GetAll();
         return Ok(rez);
+    }
+    
+    [HttpPost("create")]
+    public Auto Create(Auto auto)
+    {
+        return _service.Create(auto);
     }
 }

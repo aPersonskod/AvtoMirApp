@@ -24,6 +24,17 @@ public class Auto
     [Column("photo")]
     public string Image { get; set; }
 }
+public class AutoModel
+{
+    public int Id { get; set; }
+    public string RegNumber { get; set; }
+    public string VinNumber { get; set; }
+    public string CreationYear { get; set; }
+    public int Price { get; set; }
+    public string Color { get; set; }
+    public AutoType Type { get; set; }
+    public string Image { get; set; }
+}
 
 [Table("Договор")]
 public class Dogovor
@@ -41,6 +52,18 @@ public class Dogovor
     public int IdAvto { get; set; }
     [Column("id_клиента")]
     public int IdClient { get; set; }
+}
+public class DogovorModel
+{
+    public int Id { get; set; }
+    public DateTime SaleDate { get; set; }
+    public int Cost { get; set; }
+    public int IdEmployee { get; set; }
+    public int IdAvto { get; set; }
+    public int IdClient { get; set; }
+    public Employee Employee { get; set; }
+    public Client Client { get; set; }
+    public string CarInfo { get; set; }
 }
 
 [Table("Клиент")]
@@ -89,6 +112,7 @@ public class Employee
     public string Mobile { get; set; }
     [Column("id_магазина")]
     public int ShopId { get; set; }
+    public Shop Shop { get; set; }
 }
 
 [Table("ТипАвтомобиля")]

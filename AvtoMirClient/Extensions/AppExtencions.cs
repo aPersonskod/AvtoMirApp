@@ -44,12 +44,19 @@ public static class AppExtensions
     
     public static async Task DeleteQuery(this string query)
     {
-        using var client = new HttpClient();
-        var response = await client.DeleteAsync(query);
-        response.EnsureSuccessStatusCode();
-        if (!response.IsSuccessStatusCode)
+        try
         {
-            $"server error code {response.StatusCode}".Show("Error");
+            using var client = new HttpClient();
+            var response = await client.DeleteAsync(query);
+            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                $"server error code {response.StatusCode}".Show("Error");
+            }
+        }
+        catch (Exception e)
+        {
+            "Удаление невозможно".Show("Ошибка");
         }
     }
     
@@ -65,13 +72,10 @@ public static class AppExtensions
         }
     }
 
-    public static async Task SureDo(this Task task, string message)
+    public static bool SureDo(string message)
     {
         var result = MessageBox.Show(message, "Проверка", MessageBoxButton.YesNo);
-        if (result == MessageBoxResult.Yes)
-        {
-            await task;
-        }
+        return result == MessageBoxResult.Yes;
     }
 
     public static T Fluent<T>(this T target, Action<T> stuff)

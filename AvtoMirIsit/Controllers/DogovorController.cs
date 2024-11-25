@@ -1,4 +1,5 @@
 using AvtoMirIsit.Services;
+using AvtoMirModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,5 +20,11 @@ public class DogovorController : ControllerBase
     {
         var rez = _service.GetAll().FromSql($"SELECT * FROM Договор").ToList();
         return Ok(rez);
+    }
+    
+    [HttpPost("create")]
+    public Dogovor Create(Dogovor dogovor)
+    {
+        return _service.Create(dogovor);
     }
 }

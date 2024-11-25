@@ -8,7 +8,35 @@
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:AutoCreationViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StylesResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-        
+        <StackPanel>
+            <TextBlock Style="{StaticResource HeaderStyle}">Автомобиль</TextBlock>
+            <TextBlock Text="Регистрационный номер:"/>
+            <TextBox Text="{Binding Auto.RegNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Vin номер:"/>
+            <TextBox Text="{Binding Auto.VinNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Год выпуска:"/>
+            <TextBox Text="{Binding Auto.CreationYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Цена:"/>
+            <TextBox Text="{Binding Auto.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Цвет:"/>
+            <TextBox Text="{Binding Auto.Color, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Тип:"/>
+            <ComboBox ItemsSource="{Binding Types}" DisplayMemberPath="Model"
+                      SelectedItem="{Binding Auto.Type}"/>
+            <TextBlock Text="Фото:"/>
+            <TextBox Text="{Binding Auto.Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Image Source="{Binding Auto.Image, UpdateSourceTrigger=PropertyChanged}" Width="70" Height="40"/>
+            
+            <Button Command="{Binding CmdSave}">Сохранить</Button>
+            <Button Command="{Binding CmdGoBack}">Назад</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

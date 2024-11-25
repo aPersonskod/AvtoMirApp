@@ -41,7 +41,8 @@ public class ClientsViewModel : ObservableObject, IInitable
         CmdDeleteClient =
             new AsyncRelayCommand<Client>(async c =>
             {
-                $"https://localhost:7258/Client/delete/{c.Id}".DeleteQuery().SureDo($"Точно хотите удалить {c.Fio}?");
+                if(!AppExtensions.SureDo($"Точно хотите удалить {c.Fio}?")) return;
+                await $"https://localhost:7258/Client/delete/{c.Id}".DeleteQuery();
                 await Init();
             });
     }

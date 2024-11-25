@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AvtoMirClient.Extensions;
@@ -40,12 +42,19 @@ public class EmployeesViewModel : ObservableObject, IInitable
         CmdDeleteEmployee =
             new AsyncRelayCommand<Employee>(async e =>
             {
-                $"https://localhost:7258/Employee/delete/{e.Id}".DeleteQuery().SureDo($"Точно хотите удалить {e.Fio}?");
+                if(!AppExtensions.SureDo($"Точно хотите удалить {e.Fio}?")) return;
+                await $"https://localhost:7258/Employee/delete/{e.Id}".DeleteQuery();
                 await Init();
             });
     }
     public async Task Init()
     {
-        Employees = await "https://localhost:7258/Employee/getAll".GetQuery<Employee>();
+        var emps = await "https://localhost:7258/Employee/getAll".GetQuery<Employee>();
+        var shops = await "https://localhost:7258/Shop/getAll".GetQuery<Shop>();
+        foreach (var employee in emps)
+        {
+            employee.Shop = shops.First(x => x.Id == employee.ShopId);
+        }
+        Employees = emps;
     }
 }

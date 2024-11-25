@@ -19,6 +19,7 @@ public class AvtoCatalogViewModel : ObservableObject, IInitable
     private readonly MainWindowViewModel _owner;
     public ICommand CmdBack { get; }
     public ICommand CmdNavigateToAvto { get; }
+    public ICommand CmdNavigateToNewAvto { get; }
     private ObservableCollection<Auto> _autos;
     public ObservableCollection<Auto> Autos { get => _autos; set => SetProperty(ref _autos, value); }
     public AvtoCatalogViewModel(MainWindowViewModel owner)
@@ -27,6 +28,8 @@ public class AvtoCatalogViewModel : ObservableObject, IInitable
         CmdBack = new AsyncRelayCommand(async () 
             => await NavigationService.GetInstance().Navigate(new MainViewModel(_owner)));
         CmdNavigateToAvto = new AsyncRelayCommand<Auto>(CmdNavigateToAvtoHandler!);
+        CmdNavigateToNewAvto = new AsyncRelayCommand(async () =>
+            await NavigationService.GetInstance().Navigate(new AutoCreationViewModel(owner)));
     }
 
     public async Task Init()

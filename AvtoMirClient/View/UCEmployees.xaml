@@ -22,14 +22,14 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <TextBlock>Сотрудники</TextBlock>
+            <TextBlock Style="{StaticResource HeaderStyle}">Сотрудники</TextBlock>
         </Grid>
         <Grid Grid.Row="1">
             <DataGrid ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridStyle}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ФИО сотрудника" Binding="{Binding Fio}"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Mobile}"/>
-                    <DataGridTextColumn Header="Магазин" Binding="{Binding ShopId}"/>
+                    <DataGridTextColumn Header="Магазин" Binding="{Binding Shop.Adress}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

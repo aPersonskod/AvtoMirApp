@@ -9,10 +9,17 @@
 
     <ItemGroup>
       <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+      <PackageReference Include="NPOI" Version="2.7.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\AvtoMirModel\AvtoMirModel.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="images\main.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

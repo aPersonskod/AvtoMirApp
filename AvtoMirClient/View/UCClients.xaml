@@ -23,7 +23,7 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <TextBlock>Клиенты</TextBlock>
+            <TextBlock Style="{StaticResource HeaderStyle}">Клиенты</TextBlock>
         </Grid>
         <Grid Grid.Row="1">
             <DataGrid ItemsSource="{Binding Clients, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource DataGridStyle}">

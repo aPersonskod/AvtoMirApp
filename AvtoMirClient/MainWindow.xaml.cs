@@ -26,23 +26,6 @@ namespace AvtoMirClient
         public MainWindow()
         {
             InitializeComponent();
-            //GetInfo();
         }
-
-        /*private async void GetInfo()
-        {
-            var message = "";
-            using var client = new HttpClient();
-            var response = await client.GetAsync("https://localhost:7258/Auto/getAll2");
-            response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadFromJsonAsync<List<AutoDto>>();
-            }
-            else
-            {
-                message = $"server error code {response.StatusCode}";
-            }
-        }*/
     }
 }

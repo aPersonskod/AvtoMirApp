@@ -10,7 +10,12 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
-        <converters:BoolToVisibilityConverter x:Key="VisibilityConverter" FalseValue="Collapsed" TrueValue="Visible"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StylesResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToVisibilityConverter x:Key="VisibilityConverter" FalseValue="Collapsed" TrueValue="Visible"/>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid>
@@ -47,13 +52,28 @@
                             <TextBlock Text="Клиент: "/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding IsOrdering, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
-                            <ComboBox></ComboBox>
+                            <ComboBox ItemsSource="{Binding Clients}" DisplayMemberPath="Fio"
+                                      SelectedItem="{Binding SelectedClient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding IsOrdering, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
                             <TextBlock Text="Сотрудник: "/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding IsOrdering, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
-                            <ComboBox></ComboBox>
+                            <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="Fio"
+                                      SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="Клиент: "/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="{Binding SelectedClient.Fio}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="Сотрудник: "/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="{Binding SelectedEmployee.Fio}"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -64,7 +84,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" Margin="5" VerticalAlignment="Bottom">
                         <Button Command="{Binding CmdPlaceOrder}">Оформить заказ</Button>
-                        <Button Command="{Binding CmdConfirmOrder}" Visibility="{Binding IsOrdering, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">Подтвердить</Button>
+                        <Button Command="{Binding CmdConfirmOrder, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsOrdering, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">Подтвердить</Button>
                         <Button Command="{Binding CmdGoBack}" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">Каталог</Button>
                     </Grid>
                     <Grid Grid.Column="1" Margin="5" VerticalAlignment="Bottom">
@@ -75,7 +95,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
-                <TextBlock Margin="5" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">Заказано</TextBlock>
+                <TextBlock Style="{StaticResource HeaderStyle}" Visibility="{Binding IsOrdered, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">Заказано</TextBlock>
             </Grid>
         </Grid>
     </Grid>

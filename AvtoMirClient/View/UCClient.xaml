@@ -8,9 +8,16 @@
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:ClientViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StylesResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
-            <TextBlock>Current client</TextBlock>
+            <TextBlock Style="{StaticResource HeaderStyle}">Клиент</TextBlock>
             <TextBlock Text="ФИО:"/>
             <TextBox Text="{Binding Client.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Адрес:"/>

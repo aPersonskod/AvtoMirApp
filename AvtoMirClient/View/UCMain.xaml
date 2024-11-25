@@ -7,14 +7,26 @@
              xmlns:viewModel="clr-namespace:AvtoMirClient.ViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:MainViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StylesResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
         <StackPanel>
-            <TextBlock>Главная страница</TextBlock>
+            <TextBlock Style="{StaticResource HeaderStyle}">Главная страница</TextBlock>
             <Button Command="{Binding CmdGoToAvtoCatalog}">Каталог Автомобилей</Button>
             <Button Command="{Binding CmdGoToOrders}">Заказы</Button>
             <Button Command="{Binding CmdGoToClients}">Клиенты</Button>
             <Button Command="{Binding CmdGoToEmployees}">Сотрудники</Button>
         </StackPanel>
+        <Image Grid.Column="1" Source="../images/main.jpg"></Image>
     </Grid>
 </UserControl>

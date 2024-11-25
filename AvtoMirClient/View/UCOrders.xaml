@@ -8,6 +8,13 @@
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:OrdersViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StylesResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
@@ -15,10 +22,33 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
         <Grid>
-            <TextBlock>Заказы</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource HeaderStyle}">Заказы</TextBlock>
+                <Button Command="{Binding CmdExport}" Margin="10,5,0,5">Экспорт</Button>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <DataGrid></DataGrid>
+            <DataGrid ItemsSource="{Binding Dogovors}" Style="{StaticResource DataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Клиент" Binding="{Binding Client.Fio}"/>
+                    <DataGridTextColumn Header="Марка, Модель, Год" Binding="{Binding CarInfo}"/>
+                    <DataGridTemplateColumn Header="Дата продажи">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePickerTextBox Text="{Binding SaleDate, StringFormat='dd.MM.yyyy'}" IsReadOnly="True"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding Path=DataContext.CmdNavigateCurrentAvto, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCOrders}}}"
+                                        CommandParameter="{Binding}">Перейти</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Command="{Binding CmdNavigateMain}" Margin="5">Главное меню</Button>

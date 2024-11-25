@@ -8,11 +8,13 @@ namespace AvtoMirIsit.Services;
 public interface IAvtoService
 {
     public DbSet<Auto> GetAll();
+    Auto Create(Auto auto);
 }
 
 public interface IDogovorService
 {
     public DbSet<Dogovor> GetAll();
+    Dogovor Create(Dogovor dogovor);
 }
 
 public interface IClientService
@@ -54,6 +56,16 @@ public class AvtoService : IAvtoService
         _dataContext = dataContext;
     }
     public DbSet<Auto> GetAll() => _dataContext.Autos;
+    public Auto Create(Auto auto)
+    {
+        var lastAuto = _dataContext.Autos.ToList()?.LastOrDefault();
+        auto.Id = lastAuto is null ? 1 : lastAuto.Id + 1;
+        _dataContext.Database.ExecuteSqlRaw(
+            "INSERT INTO Автомобиль (id_автомобиля, Номер, vin_номер, Год_выпуска, Цена, Цвет, id_типа, photo)"
+        +" VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})", auto.Id, auto.RegNumber, auto.VinNumber, auto.CreationYear,
+            auto.Price, auto.Color, auto.IdType, auto.Image);
+        return auto;
+    }
 }
 
 public class DogovorService : IDogovorService
@@ -64,6 +76,15 @@ public class DogovorService : IDogovorService
         _dataContext = dataContext;
     }
     public DbSet<Dogovor> GetAll() => _dataContext.Dogovors;
+    public Dogovor Create(Dogovor dogovor)
+    {
+        var lastDogovor = _dataContext.Dogovors.ToList().LastOrDefault();
+        dogovor.Id = lastDogovor is null ? 1 : lastDogovor.Id + 1;
+        _dataContext.Database.ExecuteSqlRaw(
+            "INSERT INTO Договор (id_договора, Дата_продажи, Сумма_продажи, id_сотрудника, id_автомобиля, id_клиента) VALUES ({0}, {1}, {2}, {3}, {4}, {5})", 
+            dogovor.Id, dogovor.SaleDate.ToUniversalTime(), dogovor.Cost, dogovor.IdEmployee, dogovor.IdAvto, dogovor.IdClient);
+        return dogovor;
+    }
 }
 
 public class ClientService : IClientService
