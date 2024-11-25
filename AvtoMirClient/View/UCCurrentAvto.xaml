@@ -36,16 +36,18 @@
                 <Grid Grid.Row="0">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="{Binding Auto.Type.Mark.Mark}"/>
+                            <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="{Binding Auto.Type.Model}"/>
+                            <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="{Binding Auto.CreationYear}"/>
+                            <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="г."/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Регистрационный номер: "/>
                             <TextBlock Text="{Binding Auto.RegNumber}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Год выпуска: "/>
-                            <TextBlock Text="{Binding Auto.CreationYear}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Auto.Price}"/>
-                            <TextBlock Text=" Р."/>
+                            <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="{Binding Auto.Price}"/>
+                            <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text=" р."/>
                         </StackPanel>
                         <!--Оформление заказа-->
                         <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Visibility="{Binding IsOrdering, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource VisibilityConverter}}">

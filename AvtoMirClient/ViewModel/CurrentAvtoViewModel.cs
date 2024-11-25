@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.DirectoryServices.ActiveDirectory;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AvtoMirClient.Extensions;
@@ -14,7 +15,8 @@ namespace AvtoMirClient.ViewModel;
 public class CurrentAvtoViewModel : ObservableObject, IInitable
 {
     private readonly MainWindowViewModel _owner;
-    public Auto Auto { get; }
+    public AutoModel Auto { get; private set; }
+    private Auto _auto { get; }
     private ObservableCollection<Client> _clients = new ObservableCollection<Client>();
     public ObservableCollection<Client> Clients
     {
@@ -59,7 +61,7 @@ public class CurrentAvtoViewModel : ObservableObject, IInitable
     public CurrentAvtoViewModel(MainWindowViewModel owner, Auto auto)
     {
         _owner = owner;
-        Auto = auto;
+        _auto = auto;
         CmdGoBack = new AsyncRelayCommand(async () =>
             await NavigationService.GetInstance().Navigate(new AvtoCatalogViewModel(owner)));
         CmdNavigateOrders = new AsyncRelayCommand(async () =>
@@ -99,6 +101,9 @@ public class CurrentAvtoViewModel : ObservableObject, IInitable
     }
     public async Task Init()
     {
+        var autos = await _owner.GetAutoModels();
+        Auto = autos.First(x => x.Id == _auto.Id);
+        OnPropertyChanged(nameof(Auto));
         Employees = await "https://localhost:7258/Employee/getAll".GetQuery<Employee>();
         Clients = await "https://localhost:7258/Client/getAll".GetQuery<Client>();
     }

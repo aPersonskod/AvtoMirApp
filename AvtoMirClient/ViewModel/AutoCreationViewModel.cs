@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Input;
 using AvtoMirClient.Extensions;
 using AvtoMirClient.Interfaces;
@@ -13,7 +15,7 @@ public class AutoCreationViewModel : ObservableObject, IInitable
 {
     private readonly MainWindowViewModel _owner;
     public AutoModel Auto { get; } = new AutoModel();
-    public ObservableCollection<AutoType> Types { get; set; }
+    public ObservableCollection<AutoTypeModel> Types { get; set; }
     public ICommand CmdSave { get; }
     public ICommand CmdGoBack { get; }
     public AutoCreationViewModel(MainWindowViewModel owner)
@@ -45,7 +47,18 @@ public class AutoCreationViewModel : ObservableObject, IInitable
     }
     public async Task Init()
     {
-        Types = await "https://localhost:7258/AutoType/getAll".GetQuery<AutoType>();
+        var types = await "https://localhost:7258/AutoType/getAll".GetQuery<AutoType>();
+        var typeModels = new List<AutoTypeModel>();
+        foreach (var autoType in types)
+        {
+            typeModels.Add(new AutoTypeModel()
+            {
+                Id = autoType.Id,
+                Mark = new CarMake(){Id = autoType.MarkId},
+                Model = autoType.Model
+            });
+        }
+        Types = new ObservableCollection<AutoTypeModel>(typeModels);
         OnPropertyChanged(nameof(Types));
     }
 }

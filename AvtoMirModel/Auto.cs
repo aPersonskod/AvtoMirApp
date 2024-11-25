@@ -32,7 +32,7 @@ public class AutoModel
     public string CreationYear { get; set; }
     public int Price { get; set; }
     public string Color { get; set; }
-    public AutoType Type { get; set; }
+    public AutoTypeModel Type { get; set; }
     public string Image { get; set; }
 }
 
@@ -125,4 +125,11 @@ public class AutoType
     public string Model { get; set; }
     [Column("id_марка")]
     public int MarkId { get; set; }
+}
+
+public class AutoTypeModel
+{
+    public int Id { get; set; }
+    public string Model { get; set; }
+    public CarMake Mark { get; set; }
 }

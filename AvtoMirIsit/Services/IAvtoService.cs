@@ -58,7 +58,7 @@ public class AvtoService : IAvtoService
     public DbSet<Auto> GetAll() => _dataContext.Autos;
     public Auto Create(Auto auto)
     {
-        var lastAuto = _dataContext.Autos.ToList()?.LastOrDefault();
+        var lastAuto = _dataContext.Autos.ToList()?.OrderBy(x => x.Id)?.LastOrDefault();
         auto.Id = lastAuto is null ? 1 : lastAuto.Id + 1;
         _dataContext.Database.ExecuteSqlRaw(
             "INSERT INTO Автомобиль (id_автомобиля, Номер, vin_номер, Год_выпуска, Цена, Цвет, id_типа, photo)"
