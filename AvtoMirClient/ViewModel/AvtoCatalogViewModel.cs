@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using AvtoMirClient.DTO;
 using AvtoMirClient.Extensions;
 using AvtoMirClient.Interfaces;
 using AvtoMirModel;

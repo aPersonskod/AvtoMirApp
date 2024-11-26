@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "IwVYKResN0qEtUI00jJz51hMhaIgujJ6pIQxkbF2bSTeutMRoC1rPR2As22/uyjVb//eCr4/OtTzdi+9rdYtDg==",
+  "dgSpecHash": "TRzWEk1FAXUzKz+6R4LZIj+BXX5TJ7i+yq9GXJUUlTD2862pVGC5TGFJLI8MKRgWp191zkbeKhDCimdup7XW/A==",
   "success": true,
   "projectFilePath": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Andrey\\.nuget\\packages\\commonservicelocator\\2.0.2\\commonservicelocator.2.0.2.nupkg.sha512",
     "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
-    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net46\\1.0.3\\microsoft.netframework.referenceassemblies.net46.1.0.3.nupkg.sha512"
+    "C:\\Users\\Andrey\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net46\\1.0.3\\microsoft.netframework.referenceassemblies.net46.1.0.3.nupkg.sha512",
+    "C:\\Users\\Andrey\\.nuget\\packages\\mvvmlight\\5.4.1.1\\mvvmlight.5.4.1.1.nupkg.sha512",
+    "C:\\Users\\Andrey\\.nuget\\packages\\mvvmlightlibs\\5.4.1.1\\mvvmlightlibs.5.4.1.1.nupkg.sha512"
   ],
   "logs": []
 }

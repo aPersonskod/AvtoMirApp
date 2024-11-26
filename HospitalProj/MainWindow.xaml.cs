@@ -27,25 +27,6 @@ namespace HospitalProj
         public MainWindow()
         {
             InitializeComponent();
-
-            var currentFolder = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) + @"\";
-            DbConnection.CurrentFolder = currentFolder;
-
-            try
-            {
-                var testData = "SELECT * FROM Услуги".DoSqlCommand(3);
-                testData.First()[1].ToString().Show();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                InstallDriver();
-            }
-        }
-
-        private void InstallDriver()
-        {
-            Process.Start(DbConnection.CurrentFolder + "msoledbsql.msi");
         }
     }
 }

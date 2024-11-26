@@ -4,10 +4,15 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net46</TargetFramework>
         <UseWPF>true</UseWPF>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    </ItemGroup>
 
 </Project>

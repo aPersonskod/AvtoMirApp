@@ -10,6 +10,9 @@
         "name": "Microsoft.WindowsDesktop.App",
         "version": "6.0.0"
       }
-    ]
+    ],
+    "configProperties": {
+      "MVVMTOOLKIT_ENABLE_INOTIFYPROPERTYCHANGING_SUPPORT": true
+    }
   }
 }

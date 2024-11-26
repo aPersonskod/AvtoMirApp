@@ -7,8 +7,7 @@ namespace HospitalProj.Connection
 {
     public static class DbConnection
     {
-        public static string CurrentFolder { get; set; }
-        private static string filePath = $@"{CurrentFolder}Olena_hosp.accdb";
+        private static string filePath = "Olena_hosp.accdb";
         private static string con = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={filePath};Persist Security Info=False;";
 
         public static List<List<object>> DoSqlCommand(this string sqlQuery, int columns)

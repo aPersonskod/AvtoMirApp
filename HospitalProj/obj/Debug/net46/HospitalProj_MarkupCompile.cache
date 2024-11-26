@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETFRAMEWORK;NET46;
 D:\prog\education\AvtoMirIsit\HospitalProj\App.xaml
-11407045341
+11-146457409
 
-4-1161226747
-19-110109270
-MainWindow.xaml;
+161223200905
+77-1455377325
+MainWindow.xaml;NavigationResourceDictionary.xaml;StylesResourceDictionary.xaml;View\UCMain.xaml;View\UCNewPatient.xaml;View\UCNewSchedule.xaml;View\UCNewService.xaml;View\UCPatientCard.xaml;View\UCPatients.xaml;View\UCSchedule.xaml;View\UCServices.xaml;
 
 False
 

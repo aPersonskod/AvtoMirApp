@@ -43,6 +43,10 @@
               "target": "Package",
               "version": "[1.0.3, )",
               "autoReferenced": true
+            },
+            "MvvmLight": {
+              "target": "Package",
+              "version": "[5.4.1.1, )"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"

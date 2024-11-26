@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:view="clr-namespace:HospitalProj.View"
+                    xmlns:vm="clr-namespace:HospitalProj.ViewModel">
+    <DataTemplate DataType="{x:Type vm:MainViewModel}">
+        <view:UCMain/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ScheduleViewModel}">
+        <view:UCSchedule/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NewScheduleViewModel}">
+        <view:UCNewSchedule/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NewPatientViewModel}">
+        <view:UCNewPatient/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ServicesViewModel}">
+        <view:UCServices/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NewServiceViewModel}">
+        <view:UCNewService/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PatientsViewModel}">
+        <view:UCPatients/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:PatientCardViewModel}">
+        <view:UCPatientCard/>
+    </DataTemplate>
+</ResourceDictionary>
