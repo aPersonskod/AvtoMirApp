@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj": {}
+  },
+  "projects": {
+    "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj",
+        "projectName": "HospitalProj",
+        "projectPath": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj",
+        "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
+        "outputPath": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net46"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net46": {
+            "targetAlias": "net46",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net46": {
+          "targetAlias": "net46",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

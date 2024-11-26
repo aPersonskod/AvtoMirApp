@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
+        <StackPanel VerticalAlignment="Center" Width="300">
             <TextBlock Style="{StaticResource HeaderStyle}">Автомобиль</TextBlock>
             <TextBlock Text="Регистрационный номер:"/>
             <TextBox Text="{Binding Auto.RegNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -35,8 +35,8 @@
             <TextBox Text="{Binding Auto.Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Image Source="{Binding Auto.Image, UpdateSourceTrigger=PropertyChanged}" Width="70" Height="40"/>
             
-            <Button Command="{Binding CmdSave}">Сохранить</Button>
-            <Button Command="{Binding CmdGoBack}">Назад</Button>
+            <Button Command="{Binding CmdSave}" Width="120">Сохранить</Button>
+            <Button Command="{Binding CmdGoBack}" Width="120">Назад</Button>
         </StackPanel>
     </Grid>
 </UserControl>

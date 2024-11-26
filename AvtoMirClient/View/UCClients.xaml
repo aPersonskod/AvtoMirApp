@@ -51,8 +51,8 @@
             </DataGrid>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Command="{Binding CmdNavigateMain}" Margin="5">Главное меню</Button>
-            <Button Command="{Binding CmdGoToClient}" Margin="5">Создать клиента</Button>
+            <Button Command="{Binding CmdNavigateMain}" Margin="5" Width="120">Главное меню</Button>
+            <Button Command="{Binding CmdGoToClient}" Margin="5" Width="120">Создать клиента</Button>
         </StackPanel>
     </Grid>
 </UserControl>
