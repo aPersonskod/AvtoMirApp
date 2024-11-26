@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using HospitalProj.Models;
 using HospitalProj.ViewModel;
@@ -91,6 +93,20 @@ public class AllInfo
     }
 }
 
+public static class Ext
+{
+    public static int GetNewId(this IEnumerable<IdElem> collection)
+    {
+        var lastItem = collection?.OrderBy(x => x.Id).LastOrDefault();
+        return lastItem == null ? 1 : lastItem.Id + 1;
+    }
+
+    public static async Task Navigate(this ViewModelBase vm)
+    {
+        await NavigationService.GetInstance().Navigate(vm);
+    }
+}
+
 public class NavigationService
 {
     private static NavigationService instance = null;
@@ -107,8 +123,9 @@ public class NavigationService
         _mainViewModel.CurrentVM = new MainViewModel(_mainViewModel);
     }
 
-    public void Navigate(ViewModelBase vm)
+    public async Task Navigate(ViewModelBase vm)
     {
         _mainViewModel.CurrentVM = vm;
+        await Task.Delay(100);
     }
 }

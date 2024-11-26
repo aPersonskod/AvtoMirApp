@@ -40,6 +40,7 @@ namespace HospitalProj.Connection
                     conn.Open();
                     var cmd = new OleDbCommand(sqlQuery, conn);
                     cmd.ExecuteNonQuery();
+                    AllInfo.Instance.Refresh();
                 }
             }
             catch (Exception e)

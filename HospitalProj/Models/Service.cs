@@ -2,24 +2,29 @@
 
 namespace HospitalProj.Models
 {
+    public interface IdElem
+    {
+        int Id { get; set; }
+    }
+
     /// <summary>
     /// Услуги
     /// </summary>
-    public class Service
+    public class Service : IdElem
     {
         public int Id { get; set; }
         public string ServiceName { get; set; }
         public int Price { get; set; }
     }
 
-    public class Specialist
+    public class Specialist : IdElem
     {
         public int Id { get; set; }
         public string Fio { get; set; }
         public string Mobile { get; set; }
         public string JobTitle { get; set; }
     }
-    public class Patient
+    public class Patient : IdElem
     {
         public int Id { get; set; }
         public string Fio { get; set; }
@@ -31,7 +36,7 @@ namespace HospitalProj.Models
         public string From { get; set; }
     }
 
-    public class Questionnaire
+    public class Questionnaire : IdElem
     {
         public int Id { get; set; }
         public Patient Patient { get; set; }
@@ -45,7 +50,7 @@ namespace HospitalProj.Models
         public string LifeTargets { get; set; }
     }
 
-    public class Recording
+    public class Recording : IdElem
     {
         public int Id { get; set; }
         public DateTime PlanDate { get; set; }
@@ -55,7 +60,7 @@ namespace HospitalProj.Models
         public Service Service { get; set; }
     }
     
-    public class MeetingInfo
+    public class MeetingInfo : IdElem
     {
         public int Id { get; set; }
         public Recording Recording { get; set; }

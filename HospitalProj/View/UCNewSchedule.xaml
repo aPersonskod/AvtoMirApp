@@ -9,6 +9,12 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        
+        <StackPanel>
+            <TextBox Text="{Binding Recording.Id}"/>
+            <TextBox Text="{Binding Recording.Patient.Fio}"/>
+            <TextBox Text="{Binding Recording.PlanDate}"/>
+            <Button Command="{Binding CmdNavigateBack}">Закрыть</Button>
+            <Button Command="{Binding CmdSave}">Сохранить</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

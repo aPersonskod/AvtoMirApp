@@ -13,6 +13,13 @@ namespace HospitalProj.ViewModel
             get => _currentVM;
             set => Set(() => CurrentVM, ref _currentVM, value);
         }
+
+        private string _headerText = "Главная страница";
+        public string HeaderText
+        {
+            get => _headerText;
+            set => Set(() => HeaderText, ref _headerText, value);
+        }
         public MainWindowViewModel()
         {
             Test();
@@ -28,8 +35,9 @@ namespace HospitalProj.ViewModel
             }
             catch (Exception e)
             {
-                e.Message.Show("Ошибка");
-                InstallDriver();
+                //todo uncomment it !!!
+                /*e.Message.Show("Ошибка");
+                InstallDriver();*/
                 throw;
             }
         }
