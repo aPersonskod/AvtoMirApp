@@ -22,28 +22,8 @@ namespace HospitalProj.ViewModel
         }
         public MainWindowViewModel()
         {
-            Test();
             AllInfo.Init();
             NavigationService.Init(this);
-        }
-
-        private void Test()
-        {
-            try
-            {
-                var testData = "SELECT * FROM Услуги".DoSqlCommand(3);
-            }
-            catch (Exception e)
-            {
-                //todo uncomment it !!!
-                /*e.Message.Show("Ошибка");
-                InstallDriver();*/
-                throw;
-            }
-        }
-        private void InstallDriver()
-        {
-            Process.Start("msoledbsql.msi");
         }
     }
 }

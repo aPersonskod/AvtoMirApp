@@ -5,16 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:HospitalProj.View"
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
+             xmlns:allInfo="clr-namespace:HospitalProj.Connection"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:NewScheduleViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <StackPanel>
-            <TextBox Text="{Binding Recording.Id}"/>
-            <TextBox Text="{Binding Recording.Patient.Fio}"/>
-            <TextBox Text="{Binding Recording.PlanDate}"/>
-            <Button Command="{Binding CmdNavigateBack}">Закрыть</Button>
-            <Button Command="{Binding CmdSave}">Сохранить</Button>
+        <StackPanel Width="200" VerticalAlignment="Center">
+            <TextBlock Text="Пациент:"/>
+            <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Patients}"
+                      DisplayMemberPath="Fio"
+                      SelectedItem="{Binding Recording.Patient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Специалист:"/>
+            <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Specialists}"
+                      DisplayMemberPath="Fio"
+                      SelectedItem="{Binding Recording.Specialist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Услуга:"/>
+            <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Services}"
+                      DisplayMemberPath="ServiceName"
+                      SelectedItem="{Binding Recording.Service, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="Дата и время:"/>
+            <xctk:DateTimePicker Value="{Binding Recording.PlanDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 />
+            <TextBlock Text="Онлайн/очно:"/>
+            <Grid>
+                <Viewbox Width="30" Height="30" HorizontalAlignment="Left">
+                    <CheckBox IsChecked="{Binding Recording.Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Viewbox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Command="{Binding CmdSave}">Сохранить</Button>
+                <Button Grid.Column="1" Command="{Binding CmdNavigateBack}">Назад</Button>
+            </Grid>
         </StackPanel>
+
     </Grid>
 </UserControl>

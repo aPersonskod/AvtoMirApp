@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
+        <StackPanel VerticalAlignment="Center" Width="250">
             <TextBlock Style="{StaticResource HeaderStyle}">Сотрудник</TextBlock>
             <TextBlock Text="ФИО:"/>
             <TextBox Text="{Binding Employee.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

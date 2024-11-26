@@ -13,6 +13,7 @@
             <Button Command="{Binding CmdNavigateSchedule}">Расписание</Button>
             <Button Command="{Binding CmdNavigateServices}">Услуги</Button>
             <Button Command="{Binding CmdNavigatePatients}">Пациенты</Button>
+            <Button Command="{Binding CmdTest}">Test</Button>
         </StackPanel>
     </Grid>
 </UserControl>

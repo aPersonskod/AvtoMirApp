@@ -55,8 +55,8 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Command="{Binding CmdBack}" Margin="5">Главное меню</Button>
-            <Button Command="{Binding CmdNavigateToNewAvto}" Margin="5">Добавить автомобиль</Button>
+            <Button Command="{Binding CmdBack}" Width="120" Margin="5">Главное меню</Button>
+            <Button Command="{Binding CmdNavigateToNewAvto}" Width="160" Margin="5">Добавить автомобиль</Button>
         </StackPanel>
     </Grid>
 </UserControl>

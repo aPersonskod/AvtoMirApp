@@ -44,29 +44,29 @@ public class AllInfo
             Mobile = (string)x[2],
             JobTitle = (string)x[3],
         }).ToList();
-        Patients = "SELECT * FROM Пациент".DoSqlCommand(8).Select(x => new Patient()
+        Patients = "SELECT * FROM Пациент".DoSqlCommand(8)?.Select(x => new Patient()
         {
             Id = (int)x[0],
             Fio = (string)x[1],
             Sex = (string)x[2],
-            BirthDay = (DateTime)x[3],
-            Mobile = (string)x[4],
-            Gmail = (string)x[5],
-            Status = (string)x[6],
-            From = (string)x[7],
+            Gmail = (string)x[3],
+            Status = (string)x[4],
+            From = (string)x[5],
+            BirthDay = (DateTime)x[6],
+            Mobile = (string)x[7],
         }).ToList();
         Questionnaires = "SELECT * FROM Анкета".DoSqlCommand(10).Select(x => new Questionnaire()
         {
             Id = (int)x[0],
-            Patient = Patients.First(p => p.Id == (int)x[1]),
-            Jaloby = (string)x[2],
-            Problems = (string)x[3],
-            TherapyTarget = (string)x[4],
-            Request = (string)x[5],
-            Obstacles = (string)x[6],
-            Values = (string)x[7],
-            Pursuit = (string)x[8],
-            LifeTargets = (string)x[9],
+            Jaloby = (string)x[1],
+            Problems = (string)x[2],
+            TherapyTarget = (string)x[3],
+            Request = (string)x[4],
+            Obstacles = (string)x[5],
+            Values = (string)x[6],
+            Pursuit = (string)x[7],
+            LifeTargets = (string)x[8],
+            Patient = Patients.First(p => p.Id == (int)x[9]),
         }).ToList();
         Recordings = "SELECT * FROM Запись".DoSqlCommand(6).Select(x => new Recording()
         {
@@ -74,21 +74,21 @@ public class AllInfo
             PlanDate = (DateTime)x[1],
             Patient = Patients.First(p => p.Id == (int)x[2]),
             Specialist = Specialists.First(p => p.Id == (int)x[3]),
-            Format = (bool)x[4],
-            Service = Services.First(p => p.Id == (int)x[5]),
+            Service = Services.First(p => p.Id == (int)x[4]),
+            Format = (bool)x[5],
         }).ToList();
-        MeetingInfos = "SELECT * FROM ИнформацияОВстрече".DoSqlCommand(10).Select(x => new MeetingInfo()
+        MeetingInfos = "SELECT * FROM Информация_о_встрече".DoSqlCommand(10).Select(x => new MeetingInfo()
         {
             Id = (int)x[0],
-            Recording = Recordings.First(p => p.Id == (int)x[1]),
-            Feelings = (string)x[2],
-            Symptoms = (string)x[3],
-            Intervents = (string)x[4],
-            Quotes = (string)x[5],
-            HomeWork = (string)x[6],
-            FeedBack = (string)x[7],
-            NextTime = (string)x[8],
-            Impression = (string)x[9],
+            Feelings = (string)x[1],
+            Symptoms = (string)x[2],
+            Intervents = (string)x[3],
+            Quotes = (string)x[4],
+            HomeWork = (string)x[5],
+            FeedBack = (string)x[6],
+            NextTime = (string)x[7],
+            Impression = (string)x[8],
+            Recording = Recordings.First(p => p.Id == (int)x[9]),
         }).ToList();
     }
 }
@@ -101,9 +101,9 @@ public static class Ext
         return lastItem == null ? 1 : lastItem.Id + 1;
     }
 
-    public static async Task Navigate(this ViewModelBase vm)
+    public static void Navigate(this ViewModelBase vm)
     {
-        await NavigationService.GetInstance().Navigate(vm);
+        NavigationService.GetInstance().Navigate(vm);
     }
 }
 
@@ -123,9 +123,8 @@ public class NavigationService
         _mainViewModel.CurrentVM = new MainViewModel(_mainViewModel);
     }
 
-    public async Task Navigate(ViewModelBase vm)
+    public void Navigate(ViewModelBase vm)
     {
         _mainViewModel.CurrentVM = vm;
-        await Task.Delay(100);
     }
 }

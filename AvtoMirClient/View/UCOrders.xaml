@@ -24,7 +24,7 @@
         <Grid>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource HeaderStyle}">Заказы</TextBlock>
-                <Button Command="{Binding CmdExport}" Margin="10,5,0,5">Экспорт</Button>
+                <Button Command="{Binding CmdExport}" Margin="10,5,0,5" Width="80">Экспорт</Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -51,7 +51,7 @@
             </DataGrid>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Command="{Binding CmdNavigateMain}" Margin="5">Главное меню</Button>
+            <Button Command="{Binding CmdNavigateMain}" Width="120" Margin="5">Главное меню</Button>
         </StackPanel>
     </Grid>
 </UserControl>

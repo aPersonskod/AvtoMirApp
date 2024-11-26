@@ -1,12 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using HospitalProj.Connection;
 using HospitalProj.Models;
-using NavigationService = HospitalProj.Connection.NavigationService;
 
 namespace HospitalProj.ViewModel;
 
@@ -21,11 +18,10 @@ public class MainViewModel : ViewModelBase
     {
         _owner = owner;
         _owner.HeaderText = "Главная страница";
-        CmdNavigateSchedule = new RelayCommand(async () => await new ScheduleViewModel(_owner).Navigate());
-        CmdNavigateServices = new RelayCommand(async () => await new ServicesViewModel(_owner).Navigate());
-        CmdNavigatePatients = new RelayCommand(async () => await new PatientsViewModel(_owner).Navigate());
+        CmdNavigateSchedule = new RelayCommand(() => new ScheduleViewModel(_owner).Navigate());
+        CmdNavigateServices = new RelayCommand(() => new ServicesViewModel(_owner).Navigate());
+        CmdNavigatePatients = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
     }
-
 }
 
 public class ScheduleViewModel : ViewModelBase
@@ -38,9 +34,9 @@ public class ScheduleViewModel : ViewModelBase
     {
         _owner = owner;
         _owner.HeaderText = "Расписание";
-        CmdNavigateBack = new RelayCommand(async () => await new MainViewModel(_owner).Navigate());
-        CmdCreateSchedule = new RelayCommand(async () => await new NewScheduleViewModel(_owner).Navigate());
-        CmdUpdateSchedule = new RelayCommand<Recording>(async (r) => await new NewScheduleViewModel(_owner, r).Navigate());
+        CmdNavigateBack = new RelayCommand(() =>  new MainViewModel(_owner).Navigate());
+        CmdCreateSchedule = new RelayCommand(() =>  new NewScheduleViewModel(_owner).Navigate());
+        CmdUpdateSchedule = new RelayCommand<Recording>(r => new NewScheduleViewModel(_owner, r).Navigate());
     }
 
 }
@@ -48,6 +44,7 @@ public class ScheduleViewModel : ViewModelBase
 public class NewScheduleViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _owner;
+    private bool _needToCreate;
     public ICommand CmdNavigateBack { get; }
     public ICommand CmdSave { get; }
     public Recording Recording { get; }
@@ -55,31 +52,34 @@ public class NewScheduleViewModel : ViewModelBase
     {
         _owner = owner;
         _owner.HeaderText = "Новая запись";
-        if (recording != null) Recording = recording;
-        CmdNavigateBack = new RelayCommand(async () => await new ScheduleViewModel(_owner).Navigate());
-        CmdSave = new RelayCommand(async () =>
+        CmdNavigateBack = new RelayCommand(CmdNavigateBackHandler);
+        if (recording == null) _needToCreate = true;
+        Recording = recording ?? new Recording(){PlanDate = DateTime.Now};
+        CmdSave = new RelayCommand(CmdSaveHandler);
+    }
+    
+    private void CmdNavigateBackHandler() => new ScheduleViewModel(_owner).Navigate();
+    private void CmdSaveHandler()
+    {
+        var query = "";
+        if (!_needToCreate)
         {
-            //todo save info
-            var query = "";
-            if (recording != null)
-            {
-                //update
-                query = $"UPDATE Запись SET ДатаИВремяПроведения='{Recording.PlanDate.ToString("dd.MM.yyyy")}', "
-                    + $"КодПациент={Recording.Patient.Id}, КодСпециалиста={Recording.Specialist.Id}, "
-                    + $"Формат='{Recording.Format}', КодУслуги={Recording.Service.Id} "
-                    + $"WHERE КодЗаписи={Recording.Id}";
-                query.DoSqlCommand();
-            }
-            //create
-            if (recording == null)
-            {
-                var newId = AllInfo.Instance.Recordings.GetNewId();
-                query = $"INSERT INTO Запись (КодЗаписи, ДатаИВремяПроведения, КодПациент, КодСпециалиста, Формат, КодУслуги) "
-                        + $"VALUES ({newId}, '{Recording.PlanDate.ToString("dd.MM.yyyy")}', {Recording.Patient.Id}, {Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id})";
-                query.DoSqlCommand();
-            }
-            await new ScheduleViewModel(_owner).Navigate();
-        });
+            //update
+            query = $"UPDATE Запись SET Дата_и_время_проведения='{Recording.PlanDate.ToString("dd.MM.yyyy")}', "
+                    + $"Код_пациента={Recording.Patient.Id}, Код_специалиста={Recording.Specialist.Id}, "
+                    + $"Формат='{Recording.Format}', Код_услуги={Recording.Service.Id} "
+                    + $"WHERE Код_записи={Recording.Id}";
+            query.DoSqlCommand();
+        }
+        //create
+        if (_needToCreate)
+        {
+            var newId = AllInfo.Instance.Recordings.GetNewId();
+            query = $"INSERT INTO Запись (Код_записи, Дата_и_время_проведения, Код_пациента, Код_специалиста, Формат, Код_услуги) "
+                    + $"VALUES ({newId}, '{Recording.PlanDate.ToString("dd.MM.yyyy HH:mm:ss")}', {Recording.Patient.Id}, {Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id});";
+            query.DoSqlCommand();
+        }
+        new ScheduleViewModel(_owner).Navigate();
     }
 }
 
@@ -99,7 +99,7 @@ public class ServicesViewModel : ViewModelBase
     {
         _owner = owner;
         _owner.HeaderText = "Услуги";
-        CmdNavigateBack = new RelayCommand(async () => await new MainViewModel(_owner).Navigate());
+        CmdNavigateBack = new RelayCommand(() => new MainViewModel(_owner).Navigate());
     }
 }
 public class NewServiceViewModel : ViewModelBase
@@ -118,7 +118,7 @@ public class PatientsViewModel : ViewModelBase
     {
         _owner = owner;
         _owner.HeaderText = "Пациенты";
-        CmdNavigateBack = new RelayCommand(async () => await new MainViewModel(_owner).Navigate());
+        CmdNavigateBack = new RelayCommand(() => new MainViewModel(_owner).Navigate());
     }
 }
 public class PatientCardViewModel : ViewModelBase
