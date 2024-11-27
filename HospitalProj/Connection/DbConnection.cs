@@ -10,7 +10,8 @@ namespace HospitalProj.Connection
     {
         private static string filePath = "Olena_hosp.accdb";
         //private static string con = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={filePath};Persist Security Info=False;";
-        private static string con = $"Host=localhost;Port=5432;Username=postgres;Password=password;Database=ISPsycho";
+        //private static string con = $"Host=localhost;Port=5432;Username=postgres;Password=password;Database=ISPsycho";
+        private static string con = $"Host=localhost;Port=5432;Username=postgres;Password=123;Database=ISPsycho";
 
         public static List<List<object>> DoSqlCommand(this string sqlQuery, int columns)
         {
