@@ -22,8 +22,16 @@ namespace HospitalProj.ViewModel
         }
         public MainWindowViewModel()
         {
-            AllInfo.Init();
-            NavigationService.Init(this);
+            try
+            {
+                AllInfo.Init();
+                NavigationService.Init(this);
+            }
+            catch (Exception e)
+            {
+                e.Message.Show();
+                throw;
+            }
         }
     }
 }
