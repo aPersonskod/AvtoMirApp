@@ -5,12 +5,78 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:HospitalProj.View"
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
+             xmlns:allInfo="clr-namespace:HospitalProj.Connection"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:PatientsViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="700">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ListBoxDataTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Patient.Fio}"/>
+                <TextBlock Text="{Binding Patient.Gmail}"/>
+                <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True"/>
+                <Button Command="{Binding Path=DataContext.CmdNavigatePatientCard, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCPatients}}}"
+                        CommandParameter="{Binding}">Перейти</Button>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="Диагностическая" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding DiagPatients.Count}"/>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding DiagPatients}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="Терапия" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding TherapyPatients.Count}"/>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding TherapyPatients}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="На паузе" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding PausedPatients.Count}"/>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding PausedPatients}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <TextBlock Text="Закончили" Margin="0 0 5 0"/>
+                        <TextBlock Text="{Binding EndPatients.Count}"/>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding EndPatients}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
+                </Grid>
+            </Grid>
             <Button Command="{Binding CmdNavigateBack}">Назад</Button>
+            <Button Command="{Binding CmdNewPatient}">Новый пациент</Button>
         </StackPanel>
     </Grid>
 </UserControl>

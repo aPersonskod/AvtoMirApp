@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:HospitalProj.View"
              xmlns:allInfo="clr-namespace:HospitalProj.Connection"
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:ScheduleViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -15,9 +16,13 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding PlanDate}"/>
+                            <TextBlock>Пациент:</TextBlock>
                             <TextBlock Text="{Binding Patient.Fio}"/>
+                            <TextBlock>Услуга:</TextBlock>
                             <TextBlock Text="{Binding Service.ServiceName}"/>
+                            <TextBlock>Очно:</TextBlock>
+                            <CheckBox IsChecked="{Binding Format}" IsHitTestVisible="False" Focusable="False"/>
+                            <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True"/>
                             <Button 
                                 Command="{Binding Path=DataContext.CmdUpdateSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
                                 CommandParameter="{Binding}">Редактировать</Button>

@@ -22,7 +22,6 @@ namespace HospitalProj.ViewModel
         }
         public MainWindowViewModel()
         {
-            "Hello, Alena, как жизнь?".Show();
             try
             {
                 AllInfo.Init();

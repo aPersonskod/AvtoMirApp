@@ -28,11 +28,11 @@ namespace HospitalProj.Models
     {
         public int Id { get; set; }
         public string Fio { get; set; }
-        public string Sex { get; set; }
-        public DateTime BirthDay { get; set; }
+        public string Sex { get; set; } = "М";
+        public DateTime BirthDay { get; set; } = DateTime.Today;
         public string Mobile { get; set; }
         public string Gmail { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = "Диагностическая";
         public string From { get; set; }
     }
 
