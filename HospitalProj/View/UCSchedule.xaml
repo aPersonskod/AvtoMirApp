@@ -11,27 +11,35 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <StackPanel>
-            <ListBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Recordings}" MinHeight="200">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock>Пациент:</TextBlock>
-                            <TextBlock Text="{Binding Patient.Fio}"/>
-                            <TextBlock>Услуга:</TextBlock>
-                            <TextBlock Text="{Binding Service.ServiceName}"/>
-                            <TextBlock>Очно:</TextBlock>
-                            <CheckBox IsChecked="{Binding Format}" IsHitTestVisible="False" Focusable="False"/>
-                            <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True"/>
-                            <Button 
-                                Command="{Binding Path=DataContext.CmdUpdateSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
-                                CommandParameter="{Binding}">Редактировать</Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <Button Command="{Binding CmdNavigateBack}">Назад</Button>
-            <Button Command="{Binding CmdCreateSchedule}">Новая запись</Button>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Recordings}" MinHeight="200">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock>Пациент:</TextBlock>
+                        <TextBlock Text="{Binding Patient.Fio}"/>
+                        <TextBlock>Услуга:</TextBlock>
+                        <TextBlock Text="{Binding Service.ServiceName}"/>
+                        <TextBlock>Очно:</TextBlock>
+                        <CheckBox IsChecked="{Binding Format}" IsHitTestVisible="False" Focusable="False"/>
+                        <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True"/>
+                        <Button 
+                            Command="{Binding Path=DataContext.CmdUpdateSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
+                            CommandParameter="{Binding}">Редактировать</Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Command="{Binding CmdNavigateBack}">Назад</Button>
+            <Button Grid.Column="1" Command="{Binding CmdCreateSchedule}">Новая запись</Button>
+        </Grid>
     </Grid>
 </UserControl>
