@@ -902,32 +902,34 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrey\\.nuget\\packages\\": {}
+    "C:\\Users\\turov\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirIsit\\AvtoMirIsit.csproj",
+      "projectUniqueName": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirIsit\\AvtoMirIsit.csproj",
       "projectName": "AvtoMirIsit",
-      "projectPath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirIsit\\AvtoMirIsit.csproj",
-      "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-      "outputPath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirIsit\\obj\\",
+      "projectPath": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirIsit\\AvtoMirIsit.csproj",
+      "packagesPath": "C:\\Users\\turov\\.nuget\\packages\\",
+      "outputPath": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirIsit\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\turov\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "\\\\PROJECTS-SRV\\Source\\IMSAT-Nuget-repository\\": {},
+        "\\\\projects-srv\\Source\\IMSAT-Nuget-repository-Dev\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj": {
-              "projectPath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj"
+            "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirModel\\AvtoMirModel.csproj": {
+              "projectPath": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirModel\\AvtoMirModel.csproj"
             }
           }
         }
@@ -936,6 +938,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -974,7 +981,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

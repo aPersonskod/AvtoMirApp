@@ -8,24 +8,26 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Andrey\\.nuget\\packages\\": {}
+    "C:\\Users\\turov\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj",
+      "projectUniqueName": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirModel\\AvtoMirModel.csproj",
       "projectName": "AvtoMirModel",
-      "projectPath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\AvtoMirModel.csproj",
-      "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-      "outputPath": "D:\\prog\\education\\AvtoMirIsit\\AvtoMirModel\\obj\\",
+      "projectPath": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirModel\\AvtoMirModel.csproj",
+      "packagesPath": "C:\\Users\\turov\\.nuget\\packages\\",
+      "outputPath": "D:\\projects\\myPrjs\\AvtoMirApp\\AvtoMirModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\turov\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "\\\\PROJECTS-SRV\\Source\\IMSAT-Nuget-repository\\": {},
+        "\\\\projects-srv\\Source\\IMSAT-Nuget-repository-Dev\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -38,6 +40,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -57,15 +64,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.31, 6.0.31]"
+            "version": "[6.0.32, 6.0.32]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.31, 6.0.31]"
+            "version": "[6.0.32, 6.0.32]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.31, 6.0.31]"
+            "version": "[6.0.32, 6.0.32]"
           }
         ],
         "frameworkReferences": {
@@ -73,7 +80,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -260,10 +260,20 @@ public class PatientCardViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _owner;
     public ICommand CmdNavigateBack { get; }
+    public Recording Recording { get; }
+    public MeetingInfo MeetingInfo { get; } = new MeetingInfo();
+    public Questionnaire Questionnaire { get; } = new Questionnaire();
+
     public PatientCardViewModel(MainWindowViewModel owner, Recording recording = null)
     {
         _owner = owner;
         _owner.HeaderText = "Карточка пациента";
+        Recording = recording ?? new Recording();
+        if(recording is not null)
+        {
+            MeetingInfo = AllInfo.Instance.MeetingInfos?.FirstOrDefault(x => x.Recording.Id == Recording.Id);
+            Questionnaire = AllInfo.Instance.Questionnaires?.FirstOrDefault(x => x.Patient.Id == Recording.Patient.Id);
+        }
         CmdNavigateBack = new RelayCommand(() => new MainViewModel(_owner).Navigate());
     }
 }

@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = HospitalProj
-build_property.ProjectDir = D:\prog\education\AvtoMirIsit\HospitalProj\
+build_property.ProjectDir = D:\projects\myPrjs\AvtoMirApp\HospitalProj\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

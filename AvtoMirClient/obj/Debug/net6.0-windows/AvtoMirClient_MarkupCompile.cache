@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\prog\education\AvtoMirIsit\AvtoMirClient\obj\Debug\net6.0-windows\
+D:\projects\myPrjs\AvtoMirApp\AvtoMirClient\obj\Debug\net6.0-windows\
 AvtoMirClient
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\prog\education\AvtoMirIsit\AvtoMirClient\App.xaml
+D:\projects\myPrjs\AvtoMirApp\AvtoMirClient\App.xaml
 12747740705
 11522091504
 261308920736
-208900641778
+2081431999853
 MainWindow.xaml;NavigationResourceDictionary.xaml;StylesResourceDictionary.xaml;View\UCAutoCreation.xaml;View\UCAvto.xaml;View\UCClient.xaml;View\UCClients.xaml;View\UCCurrentAvto.xaml;View\UCEmployee.xaml;View\UCEmployees.xaml;View\UCMain.xaml;View\UCOrders.xaml;
 
 False

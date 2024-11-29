@@ -7,8 +7,114 @@
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:PatientCardViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.8*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button>Основные данные</Button>
+            <Button>Встречи</Button>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.4*"/>
+            </Grid.RowDefinitions>
+            <!--card-->
+            <Grid Row="0">
+                <StackPanel>
+                    <Grid Margin="0 0 0 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Борисов Андрей Виккторович" FontSize="18" FontWeight="Bold"/><!--{Binding Recording.Patient.Fio}-->
+                        <Button Grid.Column="1" HorizontalAlignment="Right">Редактировать данные</Button>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Статус:" Margin="0 0 0 10"/>
+                            <TextBlock Text="Дата следующей встречи:" Margin="0 0 0 10"/>
+                            <TextBlock Text="Телефон:" Margin="0 0 0 10"/>
+                            <TextBlock Text="Канал общения:" Margin="0 0 0 10"/>
+                            <TextBlock Text="Следующий раз:" Margin="0 0 0 10"/>
+                            <TextBlock Text="Откуда:" Margin="0 0 0 10"/>
+                            <TextBlock Text="Почта:" Margin="0 0 0 10"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>
+                            <TextBlock Text="{Binding Recording.PlanDate}" Margin="0 0 0 10"/>
+                            <TextBlock Text="{Binding Recording.Patient.Mobile}" Margin="0 0 0 10"/>
+                            <TextBlock Text="Telegram" Margin="0 0 0 10"/>
+                            <TextBlock Text="{Binding MeetingInfo.NextTime}" Margin="0 0 0 10"/>
+                            <TextBlock Text="{Binding Recording.Patient.From}" Margin="0 0 0 10"/>
+                            <TextBlock Text="{Binding Recording.Patient.Gmail}" Margin="0 0 0 10"/>
+                        </StackPanel>
+                        <!--{Binding Recording.Patient.Fio}-->
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <!--questionnare-->
+            <Grid Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Height="25">
+                    <TextBlock Text="Основная информация о пациенте:" FontWeight="Bold"/>
+                </Grid>
+                <Grid Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Margin="0 0 0 10">
+                            <TextBlock Text="Основные жалобы:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.Jaloby}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 0 0 10">
+                            <TextBlock Text="Проблема:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.Problems}"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Ценности:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.Values}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <StackPanel Margin="0 0 0 10">
+                            <TextBlock Text="Стратегические цели терапии:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.TherapyTarget}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 0 0 10">
+                            <TextBlock Text="Терапевтический запрос:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.Request}"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Стремления:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.Pursuit}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <StackPanel>
+                            <TextBlock Text="Возможные препятствия:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.Obstacles}"/>
+                        </StackPanel>
+                        <StackPanel Margin="0 52 0 0">
+                            <TextBlock Text="Цели:" FontWeight="DemiBold"/>
+                            <TextBlock Text="{Binding Questionnaire.LifeTargets}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

@@ -9,4 +9,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AvtoMirClient
-build_property.ProjectDir = D:\prog\education\AvtoMirIsit\AvtoMirClient\
+build_property.ProjectDir = D:\projects\myPrjs\AvtoMirApp\AvtoMirClient\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

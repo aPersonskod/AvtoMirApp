@@ -74,10 +74,10 @@ public class AllInfo
         {
             Id = (int)x[0],
             PlanDate = (DateTime)x[1],
-            Patient = Patients.First(p => p.Id == (int)x[2]),
-            Specialist = Specialists.First(p => p.Id == (int)x[3]),
-            Service = Services.First(p => p.Id == (int)x[4]),
-            Format = (bool)x[5],
+            Format = (bool)((string)x[2] == "True"),
+            Patient = Patients.First(p => p.Id == (int)x[3]),
+            Specialist = Specialists.First(p => p.Id == (int)x[4]),
+            Service = Services.First(p => p.Id == (int)x[5]),
         }).ToList();
         MeetingInfos = "SELECT * FROM Информация_о_встрече".DoSqlCommand(10).Select(x => new MeetingInfo()
         {

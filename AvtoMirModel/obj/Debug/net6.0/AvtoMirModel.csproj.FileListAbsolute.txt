@@ -9,3 +9,15 @@ D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.dll
 D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\refint\AvtoMirModel.dll
 D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.pdb
 D:\prog\education\AvtoMirIsit\AvtoMirModel\obj\Debug\net6.0\ref\AvtoMirModel.dll
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\bin\Debug\net6.0\AvtoMirModel.deps.json
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\bin\Debug\net6.0\AvtoMirModel.dll
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\bin\Debug\net6.0\AvtoMirModel.pdb
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.AssemblyInfoInputs.cache
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.AssemblyInfo.cs
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.csproj.CoreCompileInputs.cache
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.sourcelink.json
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.dll
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\refint\AvtoMirModel.dll
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\AvtoMirModel.pdb
+D:\projects\myPrjs\AvtoMirApp\AvtoMirModel\obj\Debug\net6.0\ref\AvtoMirModel.dll

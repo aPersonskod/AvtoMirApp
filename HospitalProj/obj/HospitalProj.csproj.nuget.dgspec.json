@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj": {}
+    "D:\\projects\\myPrjs\\AvtoMirApp\\HospitalProj\\HospitalProj.csproj": {}
   },
   "projects": {
-    "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj": {
+    "D:\\projects\\myPrjs\\AvtoMirApp\\HospitalProj\\HospitalProj.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj",
+        "projectUniqueName": "D:\\projects\\myPrjs\\AvtoMirApp\\HospitalProj\\HospitalProj.csproj",
         "projectName": "HospitalProj",
-        "projectPath": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\HospitalProj.csproj",
-        "packagesPath": "C:\\Users\\Andrey\\.nuget\\packages\\",
-        "outputPath": "D:\\prog\\education\\AvtoMirIsit\\HospitalProj\\obj\\",
+        "projectPath": "D:\\projects\\myPrjs\\AvtoMirApp\\HospitalProj\\HospitalProj.csproj",
+        "packagesPath": "C:\\Users\\turov\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\myPrjs\\AvtoMirApp\\HospitalProj\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Andrey\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\turov\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net46"
         ],
         "sources": {
+          "\\\\PROJECTS-SRV\\Source\\IMSAT-Nuget-repository\\": {},
+          "\\\\projects-srv\\Source\\IMSAT-Nuget-repository-Dev\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -42,12 +49,6 @@
               "target": "Package",
               "version": "[4.6.1, )"
             },
-            "Microsoft.NETFramework.ReferenceAssemblies": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.0.3, )",
-              "autoReferenced": true
-            },
             "MvvmLight": {
               "target": "Package",
               "version": "[5.4.1.1, )"
@@ -57,7 +58,7 @@
               "version": "[4.0.12, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
