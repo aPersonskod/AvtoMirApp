@@ -38,7 +38,7 @@
             <TextBox Text="{Binding Questionnaire.Jaloby, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Проблема:"/>
             <TextBox Text="{Binding Questionnaire.Problems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Цели_терапии:"/>
+            <TextBlock Text="Цели терапии:"/>
             <TextBox Text="{Binding Questionnaire.TherapyTarget, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Запрос:"/>
             <TextBox Text="{Binding Questionnaire.Request, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -50,7 +50,7 @@
             <TextBox Text="{Binding Questionnaire.Pursuit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Цели:"/>
             <TextBox Text="{Binding Questionnaire.LifeTargets, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Margin="0 10 0 0" Command="{Binding CmdSave}">Создать</Button>
+            <Button Margin="0 10 0 0" Command="{Binding CmdSave}">Сохранить</Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

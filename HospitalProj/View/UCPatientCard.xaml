@@ -13,10 +13,16 @@
             <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition Width="0.8*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <Button>Основные данные</Button>
-            <Button>Встречи</Button>
-        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0">Основные данные</Button>
+            <Button Grid.Row="1">Встречи</Button>
+            <Button Grid.Row="2" VerticalAlignment="Bottom" Command="{Binding CmdNavigateBack}">Назад</Button>
+        </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.6*"/>
@@ -31,7 +37,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="Борисов Андрей Виккторович" FontSize="18" FontWeight="Bold"/><!--{Binding Recording.Patient.Fio}-->
-                        <Button Grid.Column="1" HorizontalAlignment="Right">Редактировать данные</Button>
+                        <Button Grid.Column="1" HorizontalAlignment="Right" Command="{Binding CmdChangeClient}">Редактировать данные</Button>
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>

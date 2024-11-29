@@ -161,7 +161,7 @@ public class NewPatientViewModel : ViewModelBase
     public ICommand CmdNavigateBack { get; }
     public ICommand CmdSave { get; }
     public Patient Patient { get; }
-    public Questionnaire Questionnaire { get; } = new Questionnaire();
+    public Questionnaire Questionnaire { get; }
     private Sex _selectedSex = Sex.M;
     public Sex SelectedSex
     {
@@ -192,12 +192,13 @@ public class NewPatientViewModel : ViewModelBase
             };
         }
     }
-    public NewPatientViewModel(MainWindowViewModel owner, Patient patient = null)
+    public NewPatientViewModel(MainWindowViewModel owner, Patient patient = null, Questionnaire questionnaire = null)
     {
         _owner = owner;
         _owner.HeaderText = "Новый пациент";
         if (patient == null) _needToCreate = true;
         Patient = patient ?? new Patient();
+        Questionnaire = questionnaire ?? new Questionnaire();
         CmdSave = new RelayCommand(CmdSaveHandler);
         CmdNavigateBack = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
     }
@@ -216,7 +217,7 @@ public class NewPatientViewModel : ViewModelBase
             //update
             query = $"UPDATE Пациент SET ФИО='{Patient.Fio}', "
                     + $"Пол='{Patient.Sex}', Почта='{Patient.Gmail}', "
-                    + $"Статус='{Patient.Status}', Откуда='{Patient.From}', Дата_рождения='{Patient.BirthDay.ToUniversalTime()}', Номер_телефона='{Patient.Mobile}'"
+                    + $"Статус='{Patient.Status}', Откуда='{Patient.From}', Дата_рождения='{Patient.BirthDay.ToUniversalTime()}', Номер_телефона='{Patient.Mobile}' "
                     + $"WHERE Код_пациента={Patient.Id}";
             query.DoSqlCommand();
             return Patient.Id;
@@ -239,10 +240,10 @@ public class NewPatientViewModel : ViewModelBase
         if (!_needToCreate)
         {
             //update
-            query = $"UPDATE Анкета SET Жалобы='{Questionnaire.Jaloby}', Проблема='{Questionnaire.Problems}' "
+            query = $"UPDATE Анкета SET Жалобы='{Questionnaire.Jaloby}', Проблема='{Questionnaire.Problems}', "
                     + $"Цели_терапии='{Questionnaire.TherapyTarget}', Запрос='{Questionnaire.Request}', "
                     + $"Препятсвия='{Questionnaire.Obstacles}', Ценности='{Questionnaire.Values}', Стремления='{Questionnaire.Pursuit}', "
-                    + $"Цели='{Questionnaire.LifeTargets}, Код_пациента={patientId} "
+                    + $"Цели='{Questionnaire.LifeTargets}', Код_пациента='{patientId}' "
                     + $"WHERE Код_анкеты={Questionnaire.Id}";
             query.DoSqlCommand();
         }
@@ -260,6 +261,7 @@ public class PatientCardViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _owner;
     public ICommand CmdNavigateBack { get; }
+    public ICommand CmdChangeClient { get; }
     public Recording Recording { get; }
     public MeetingInfo MeetingInfo { get; } = new MeetingInfo();
     public Questionnaire Questionnaire { get; } = new Questionnaire();
@@ -274,7 +276,13 @@ public class PatientCardViewModel : ViewModelBase
             MeetingInfo = AllInfo.Instance.MeetingInfos?.FirstOrDefault(x => x.Recording.Id == Recording.Id);
             Questionnaire = AllInfo.Instance.Questionnaires?.FirstOrDefault(x => x.Patient.Id == Recording.Patient.Id);
         }
-        CmdNavigateBack = new RelayCommand(() => new MainViewModel(_owner).Navigate());
+        CmdNavigateBack = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
+        CmdChangeClient = new RelayCommand(CmdChangeClientHandler);
+    }
+
+    private void CmdChangeClientHandler()
+    {
+        new NewPatientViewModel(_owner, Recording.Patient, Questionnaire).Navigate();
     }
 }
 
