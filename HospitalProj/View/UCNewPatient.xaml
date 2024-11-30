@@ -42,7 +42,7 @@
             <TextBox Text="{Binding Questionnaire.TherapyTarget, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Запрос:"/>
             <TextBox Text="{Binding Questionnaire.Request, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Препятсвия:"/>
+            <TextBlock Text="Препятствия:"/>
             <TextBox Text="{Binding Questionnaire.Obstacles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Ценности:"/>
             <TextBox Text="{Binding Questionnaire.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

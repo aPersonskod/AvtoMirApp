@@ -26,7 +26,7 @@
                       SelectedItem="{Binding Recording.Service, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Дата и время:"/>
             <xctk:DateTimePicker Value="{Binding Recording.PlanDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Онлайн/очно:"/>
+            <TextBlock Text="Онлайн:"/>
             <Grid>
                 <Viewbox Width="30" Height="30" HorizontalAlignment="Left">
                     <CheckBox IsChecked="{Binding Recording.Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

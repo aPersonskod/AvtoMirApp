@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -9,6 +11,25 @@ using HospitalProj.Enums;
 using HospitalProj.Models;
 
 namespace HospitalProj.ViewModel;
+
+public interface ICmdBack
+{
+
+}
+
+public static class VmExt
+{
+    public static CmdBackViewModel SetCmdNavigate(this CmdBackViewModel vm, Action handler)
+    {
+        vm.CmdNavigateBack = new RelayCommand(handler);
+        return vm;
+    }
+}
+
+public class CmdBackViewModel : ViewModelBase
+{
+    public ICommand CmdNavigateBack { get; set; }
+}
 
 public class MainViewModel : ViewModelBase
 {
@@ -33,15 +54,37 @@ public class ScheduleViewModel : ViewModelBase
     public ICommand CmdNavigateBack { get; }
     public ICommand CmdCreateSchedule { get; }
     public ICommand CmdUpdateSchedule { get; }
+    public ICommand CmdDeleteSchedule { get; }
+    public ICommand CmdNavigatePatientCard { get; }
+    public ObservableCollection<Recording> DiagPatients { get; }
+    public ObservableCollection<Recording> TherapyPatients { get; }
+    public ObservableCollection<Recording> PausedPatients { get; }
+    public ObservableCollection<Recording> EndPatients { get; }
     public ScheduleViewModel(MainWindowViewModel owner)
     {
         _owner = owner;
         _owner.HeaderText = "Расписание";
+        DiagPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "Диагностическая"));
+        TherapyPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "Терапия"));      
+        PausedPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "На паузе"));      
+        EndPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "Закончили"));  
         CmdNavigateBack = new RelayCommand(() =>  new MainViewModel(_owner).Navigate());
         CmdCreateSchedule = new RelayCommand(() =>  new NewScheduleViewModel(_owner).Navigate());
         CmdUpdateSchedule = new RelayCommand<Recording>(r => new NewScheduleViewModel(_owner, r).Navigate());
+        CmdNavigatePatientCard = new RelayCommand<Recording>(CmdNavigatePatientCardHandler);
+        CmdDeleteSchedule = new RelayCommand<Recording>(CmdDeleteRecording);
     }
 
+    private void CmdNavigatePatientCardHandler(Recording r)
+    {
+        new PatientCardViewModel(_owner, r).SetCmdNavigate(this.Navigate).Navigate();
+    }
+
+    private void CmdDeleteRecording(Recording r)
+    {
+        $"DELETE FROM Запись WHERE Код_записи = {r.Id}".DoSqlCommand();
+        new ScheduleViewModel(_owner).Navigate();
+    }
 }
 
 public class NewScheduleViewModel : ViewModelBase
@@ -135,33 +178,22 @@ public class PatientsViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _owner;
     public ICommand CmdNavigateBack { get; }
-    public ICommand CmdNavigatePatientCard { get; }
     public ICommand CmdNewPatient { get; }
-    public ObservableCollection<Recording> DiagPatients { get; }
-    public ObservableCollection<Recording> TherapyPatients { get; }
-    public ObservableCollection<Recording> PausedPatients { get; }
-    public ObservableCollection<Recording> EndPatients { get; }
     public PatientsViewModel(MainWindowViewModel owner)
     {
         _owner = owner;
         _owner.HeaderText = "Пациенты";
-        DiagPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "Диагностическая"));
-        TherapyPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "Терапия"));      
-        PausedPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "На паузе"));      
-        EndPatients = new(AllInfo.Instance.Recordings.Where(x => x.Patient.Status == "Закончили"));        
         CmdNavigateBack = new RelayCommand(() => new MainViewModel(_owner).Navigate());
-        CmdNavigatePatientCard = new RelayCommand<Recording>(r => new PatientCardViewModel(_owner, r).Navigate());
-        CmdNewPatient = new RelayCommand(() => new NewPatientViewModel(_owner).Navigate());
+        CmdNewPatient = new RelayCommand<Patient>((p) => new NewPatientViewModel(_owner, p).SetCmdNavigate(this.Navigate).Navigate());
     }
 }
-public class NewPatientViewModel : ViewModelBase
+public class NewPatientViewModel : CmdBackViewModel
 {
     private readonly MainWindowViewModel _owner;
     private readonly bool _needToCreate;
-    public ICommand CmdNavigateBack { get; }
     public ICommand CmdSave { get; }
     public Patient Patient { get; }
-    public Questionnaire Questionnaire { get; }
+    public Questionnaire Questionnaire { get; } = new Questionnaire();
     private Sex _selectedSex = Sex.M;
     public Sex SelectedSex
     {
@@ -192,21 +224,22 @@ public class NewPatientViewModel : ViewModelBase
             };
         }
     }
-    public NewPatientViewModel(MainWindowViewModel owner, Patient patient = null, Questionnaire questionnaire = null)
+    public NewPatientViewModel(MainWindowViewModel owner, Patient patient = null)
     {
         _owner = owner;
         _owner.HeaderText = "Новый пациент";
         if (patient == null) _needToCreate = true;
         Patient = patient ?? new Patient();
-        Questionnaire = questionnaire ?? new Questionnaire();
+        if (patient != null)
+            Questionnaire = AllInfo.Instance.Questionnaires.First(x => x.Patient.Id == Patient.Id);
         CmdSave = new RelayCommand(CmdSaveHandler);
-        CmdNavigateBack = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
+        //CmdNavigateBack = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
     }
     private void CmdSaveHandler()
     {
         var patientId = CreatePatient();
         CreateQuestionnaire(patientId);
-        new PatientsViewModel(_owner).Navigate();
+        CmdNavigateBack.Execute(null);
     }
 
     private int CreatePatient()
@@ -257,10 +290,9 @@ public class NewPatientViewModel : ViewModelBase
         }
     }
 }
-public class PatientCardViewModel : ViewModelBase
+public class PatientCardViewModel : CmdBackViewModel
 {
     private readonly MainWindowViewModel _owner;
-    public ICommand CmdNavigateBack { get; }
     public ICommand CmdChangeClient { get; }
     public Recording Recording { get; }
     public MeetingInfo MeetingInfo { get; } = new MeetingInfo();
@@ -282,7 +314,7 @@ public class PatientCardViewModel : ViewModelBase
 
     private void CmdChangeClientHandler()
     {
-        new NewPatientViewModel(_owner, Recording.Patient, Questionnaire).Navigate();
+        new NewPatientViewModel(_owner, Recording.Patient).SetCmdNavigate(this.Navigate).Navigate();
     }
 }
 
