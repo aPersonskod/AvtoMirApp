@@ -129,3 +129,9 @@ D:\projects\myPrjs\AvtoMirApp\HospitalProj\obj\Debug\net46\HospitalProj.sourceli
 D:\projects\myPrjs\AvtoMirApp\HospitalProj\obj\Debug\net46\Hospital.20BD645C.Up2Date
 D:\projects\myPrjs\AvtoMirApp\HospitalProj\obj\Debug\net46\HospitalProj.exe
 D:\projects\myPrjs\AvtoMirApp\HospitalProj\obj\Debug\net46\HospitalProj.pdb
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\NPOI.OOXML.dll
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\NPOI.OpenXml4Net.dll
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\NPOI.OpenXmlFormats.dll
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\NPOI.dll
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\BouncyCastle.Crypto.dll
+D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\ICSharpCode.SharpZipLib.dll

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:HospitalProj.View"
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
+             xmlns:allInfo="clr-namespace:HospitalProj.Connection"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:PatientCardViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -122,22 +123,65 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding Recording.Patient.Fio}" FontSize="18" FontWeight="Bold"/>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding Recording.Patient.Fio}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10"/>
+                                <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=MeetingInfos}"
+                                          DisplayMemberPath="Recording.PlanDate" Width="200" HorizontalAlignment="Left"
+                                          SelectedItem="{Binding SelectedMeetingInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
                             <StackPanel Grid.Column="1" Width="140">
                                 <Button Command="{Binding CmdNavigateBack}">Назад</Button>
                             </StackPanel>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.6*"/>
+                                <ColumnDefinition Width="0.8*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <TextBlock Text="Статус:" Margin="0 0 0 10"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>
-                            </StackPanel>
+                            <Grid Grid.Column="0">
+                                <ScrollViewer Height="300">
+                                    <StackPanel>
+                                        <TextBlock Text="Самочувствие с момента последней сессии/" FontWeight="DemiBold"/>
+                                        <TextBlock Text="что изменилось:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Feelings}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Беспокоящие симптомы/поведение:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Symptoms}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Интервенции на сессии:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Intervents}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Важные цитаты:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Quotes}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Домашнее задание + прогноз выполнения %:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.HomeWork}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Обратная связь в конце сессии:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.FeedBack}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="На следующий раз:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.NextTime}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Впечатление от пациента:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Impression}" Margin="0 0 0 10"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                            <ScrollViewer Grid.Column="1" Height="300">
+                                <StackPanel>
+                                    <TextBlock Text="Самочувствие" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.Feelings}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="Симптомы" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.Symptoms}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="Интервенции" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.Intervents}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="Цитаты" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.Quotes}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="ДЗ" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.HomeWork}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="Обратная связь" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.FeedBack}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="В следующий раз" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.NextTime}" Margin="0 0 0 10"/>
+                                    <TextBlock Text="Впечатления" Margin="0 0 0 10"/>
+                                    <TextBox Text="{Binding SelectedMeetingInfo.Impression}" Margin="0 0 0 10"/>
+                                    <Button Command="{Binding CmdCreateMeeting}">Создать встречу</Button>
+                                </StackPanel>
+                            </ScrollViewer>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -148,20 +192,58 @@
                         <Grid Margin="0 0 0 10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding Recording.Patient.Fio}" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Grid.Column="0" Text="Собирательный отчет по встречам" FontSize="18" FontWeight="Bold"/>
                             <StackPanel Grid.Column="1" Width="140">
                                 <Button Command="{Binding CmdNavigateBack}">Назад</Button>
                             </StackPanel>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.6*"/>
+                                <ColumnDefinition Width="0.9*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="Статус:" Margin="0 0 0 10"/>
+                                <TextBlock Text="Период оказания услуг:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                <Grid Margin="0 0 0 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.1"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="Дата начала:"/>
+                                        <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock Text="Дата окончания:"/>
+                                        <DatePicker SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </Grid>
+                                <TextBlock Text="Данные о пациенте:" FontWeight="SemiBold" FontSize="16"/>
+                                <ScrollViewer Height="230">
+                                    <StackPanel>
+                                        <TextBlock Text="Самочувствие с момента последней сессии/" FontWeight="DemiBold"/>
+                                        <TextBlock Text="что изменилось:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding Feelings}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Беспокоящие симптомы/поведение:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding Symptoms}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Интервенции на сессии:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding Intervents}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Важные цитаты:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding Quotes}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Домашнее задание + прогноз выполнения %:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding HomeWork}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Обратная связь в конце сессии:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding FeedBack}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="На следующий раз:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding NextTime}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="Впечатление от пациента:" FontWeight="DemiBold" Margin="0 0 0 10"/>
+                                        <CheckBox IsChecked="{Binding Impression}" Margin="0 0 0 10"/>
+                                        <Button Command="{Binding CmdCreateReport}">Создать отчёт</Button>
+                                    </StackPanel>
+                                </ScrollViewer>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>
