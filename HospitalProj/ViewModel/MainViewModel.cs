@@ -114,7 +114,7 @@ public class NewScheduleViewModel : ViewModelBase
         if (!_needToCreate)
         {
             //update
-            query = $"UPDATE Запись SET Дата_и_время_проведения='{Recording.PlanDate.ToUniversalTime()}', "
+            query = $"UPDATE Запись SET Дата_и_время_проведения='{Recording.PlanDate:yyyy-MM-dd H:mm:ss}', "
                     + $"Код_пациента={Recording.Patient.Id}, Код_специалиста={Recording.Specialist.Id}, "
                     + $"Формат='{Recording.Format}', Код_услуги={Recording.Service.Id} "
                     + $"WHERE Код_записи={Recording.Id}";
@@ -124,9 +124,14 @@ public class NewScheduleViewModel : ViewModelBase
         if (_needToCreate)
         {
             if(Recording.PlanDate==null || Recording.Specialist==null || Recording.Patient==null || Recording.Service==null)return;
+            if (AllInfo.Instance.Recordings.Any(x => x.PlanDate == Recording.PlanDate))
+            {
+                "Дата уже занята".Show();
+                return;
+            }
             var newId = AllInfo.Instance.Recordings.GetNewId();
             query = $"INSERT INTO Запись (Код_записи, Дата_и_время_проведения, Код_пациента, Код_специалиста, Формат, Код_услуги) "
-                    + $"VALUES ({newId}, '{Recording.PlanDate.ToUniversalTime()}', {Recording.Patient.Id}, {Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id});";
+                    + $"VALUES ({newId}, '{Recording.PlanDate:yyyy-MM-dd H:mm:ss}', {Recording.Patient.Id}, {Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id});";
             query.DoSqlCommand();
         }
         new ScheduleViewModel(_owner).Navigate();
@@ -317,7 +322,7 @@ public class PatientCardViewModel : CmdBackViewModel
         if (SelectedMeetingInfo.Id != 0)
         {
             //update
-            query = $"UPDATE Анкета SET Самочуствие='{SelectedMeetingInfo.Feelings}', Симптомы='{SelectedMeetingInfo.Symptoms}', "
+            query = $"UPDATE Информация_о_встрече SET Самочуствие='{SelectedMeetingInfo.Feelings}', Симптомы='{SelectedMeetingInfo.Symptoms}', "
                     + $"Интервенции='{SelectedMeetingInfo.Intervents}', Цитаты='{SelectedMeetingInfo.Quotes}', "
                     + $"ДЗ='{SelectedMeetingInfo.HomeWork}', Обратная_связь='{SelectedMeetingInfo.FeedBack}', На_следующий_раз='{SelectedMeetingInfo.NextTime}', "
                     + $"Впечатления='{SelectedMeetingInfo.Impression}', Код_записи='{Recording.Id}' "
@@ -341,7 +346,7 @@ public class PatientCardViewModel : CmdBackViewModel
     public ICommand CmdCreateReport { get; }
     private void CreateReportHandler()
     {
-        var meetings = AllInfo.Instance.MeetingInfos.Where(x => x.Recording.PlanDate > StartDate && x.Recording.PlanDate < EndDate);
+        var meetings = AllInfo.Instance.MeetingInfos.Where(x => x.Recording.PlanDate >= StartDate && x.Recording.PlanDate <= EndDate);
         var data = new List<List<string>>();
         var header = new List<string>();
         if(Feelings)   header.Add("Самочувствие с момента последней сессии/что изменилось");
@@ -380,7 +385,7 @@ public class PatientCardViewModel : CmdBackViewModel
             result = fd.FileName;
         }
         if(string.IsNullOrEmpty(result)) return;
-        new Word().GenerateWordExportFile(data, result);
+        new Word().GenerateWordExportFile(data, result, Recording.Specialist.Fio, Recording.Patient.Fio);
         Process.Start(new ProcessStartInfo(result) { UseShellExecute = true });
     }
 
