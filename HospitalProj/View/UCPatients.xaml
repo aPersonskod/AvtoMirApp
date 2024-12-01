@@ -7,6 +7,7 @@
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
              xmlns:allInfo="clr-namespace:HospitalProj.Connection"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:PatientsViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="700">
@@ -49,8 +50,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Command="{Binding CmdNavigateBack}">Назад</Button>
-            <Button Grid.Column="1" Command="{Binding CmdNewPatient}">Новый пациент</Button>
+            <Button Grid.Column="0" Command="{Binding CmdNavigateBack}" Width="200">Назад</Button>
+            <Button Grid.Column="1" Command="{Binding CmdNewPatient}" Style="{StaticResource GreenBtnStyle}" Width="200">Новый пациент</Button>
         </Grid>
     </Grid>
 </UserControl>

@@ -9,25 +9,26 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:NewScheduleViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Width="200" VerticalAlignment="Center">
+        <StackPanel Width="300" VerticalAlignment="Center">
             <TextBlock Text="Пациент:"/>
             <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Patients}"
-                      DisplayMemberPath="Fio"
+                      DisplayMemberPath="Fio" Margin="0 0 0 15"
                       SelectedItem="{Binding Recording.Patient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Специалист:"/>
             <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Specialists}"
-                      DisplayMemberPath="Fio"
+                      DisplayMemberPath="Fio" Margin="0 0 0 15"
                       SelectedItem="{Binding Recording.Specialist, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Услуга:"/>
             <ComboBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Services}"
-                      DisplayMemberPath="ServiceName"
+                      DisplayMemberPath="ServiceName" Margin="0 0 0 15"
                       SelectedItem="{Binding Recording.Service, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Дата и время:"/>
-            <xctk:DateTimePicker Value="{Binding Recording.PlanDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <xctk:DateTimePicker Value="{Binding Recording.PlanDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0 0 0 15"/>
             <TextBlock Text="Онлайн:"/>
-            <Grid>
+            <Grid Margin="0 0 0 30">
                 <Viewbox Width="30" Height="30" HorizontalAlignment="Left">
                     <CheckBox IsChecked="{Binding Recording.Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </Viewbox>
@@ -37,7 +38,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding CmdSave}">Сохранить</Button>
+                <Button Grid.Column="0" Command="{Binding CmdSave}" Style="{StaticResource GreenBtnStyle}">Сохранить</Button>
                 <Button Grid.Column="1" Command="{Binding CmdNavigateBack}">Назад</Button>
             </Grid>
         </StackPanel>

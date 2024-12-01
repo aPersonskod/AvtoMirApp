@@ -8,49 +8,56 @@
              xmlns:enums="clr-namespace:HospitalProj.Enums"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:NewPatientViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="600">
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Overpass"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel Width="200" Margin="0 0 30 0">
             <TextBlock Text="ФИО:"/>
-            <TextBox Text="{Binding Patient.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Patient.Fio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Пол:"/>
             <ComboBox ItemsSource="{Binding Path=SelectedSex, Converter={enums:EnumToCollectionConverter}, Mode=OneTime}"
-                      SelectedValuePath="Value"
+                      SelectedValuePath="Value" Margin="0 0 0 10"
                       DisplayMemberPath="Description"
                       SelectedValue="{Binding Path=SelectedSex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Дата рождения:"/>
-            <DatePicker SelectedDate="{Binding Patient.BirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <DatePicker SelectedDate="{Binding Patient.BirthDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Номер телефона:"/>
-            <TextBox Text="{Binding Patient.Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Patient.Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Электронная почта:"/>
-            <TextBox Text="{Binding Patient.Gmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Patient.Gmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Статус:"/>
             <ComboBox ItemsSource="{Binding Path=SelectedStatus, Converter={enums:EnumToCollectionConverter}, Mode=OneTime}"
-                      SelectedValuePath="Value"
+                      SelectedValuePath="Value" Margin="0 0 0 10"
                       DisplayMemberPath="Description"
                       SelectedValue="{Binding Path=SelectedStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Откуда:"/>
             <TextBox Text="{Binding Patient.From, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Margin="0 31 0 0" Command="{Binding CmdNavigateBack}">Закрыть</Button>
+            <Button Margin="0 20 0 0" Command="{Binding CmdNavigateBack}">Закрыть</Button>
         </StackPanel>
         <StackPanel Width="200">
             <TextBlock Text="Жалобы:"/>
-            <TextBox Text="{Binding Questionnaire.Jaloby, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.Jaloby, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Проблема:"/>
-            <TextBox Text="{Binding Questionnaire.Problems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.Problems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Цели терапии:"/>
-            <TextBox Text="{Binding Questionnaire.TherapyTarget, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.TherapyTarget, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Запрос:"/>
-            <TextBox Text="{Binding Questionnaire.Request, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.Request, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Препятствия:"/>
-            <TextBox Text="{Binding Questionnaire.Obstacles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.Obstacles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Ценности:"/>
-            <TextBox Text="{Binding Questionnaire.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.Values, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Стремления:"/>
-            <TextBox Text="{Binding Questionnaire.Pursuit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Questionnaire.Pursuit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
             <TextBlock Text="Цели:"/>
-            <TextBox Text="{Binding Questionnaire.LifeTargets, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Margin="0 10 0 0" Command="{Binding CmdSave}">Сохранить</Button>
+            <TextBox Text="{Binding Questionnaire.LifeTargets, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <Button Margin="0 22 0 0" Command="{Binding CmdSave}" Style="{StaticResource GreenBtnStyle}">Сохранить</Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

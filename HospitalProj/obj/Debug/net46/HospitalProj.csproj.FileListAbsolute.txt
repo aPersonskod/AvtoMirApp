@@ -135,3 +135,4 @@ D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\NPOI.OpenXmlFormats.d
 D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\NPOI.dll
 D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\BouncyCastle.Crypto.dll
 D:\prog\education\AvtoMirIsit\HospitalProj\bin\Debug\net46\ICSharpCode.SharpZipLib.dll
+D:\prog\education\AvtoMirIsit\HospitalProj\obj\Debug\net46\App.baml

@@ -7,12 +7,40 @@
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:MainViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily" Value="Overpass"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#1F211F"/>
+            <Setter Property="Margin" Value="0 0 0 10 "/>
+            <Setter Property="Height" Value="45"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        
+    </UserControl.Resources>
     <Grid>
-        <StackPanel>
-            <Button Command="{Binding CmdNavigateSchedule}">Расписание</Button>
-            <Button Command="{Binding CmdNavigateServices}">Услуги</Button>
-            <Button Command="{Binding CmdNavigatePatients}">Пациенты</Button>
-        </StackPanel>
+        <Grid.Background>
+            <ImageBrush ImageSource="../images/bg.png"></ImageBrush>
+        </Grid.Background>
+        <Border CornerRadius="30" BorderBrush="Black" Background="#1F211F" Width="400" Height="350">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+                <Image Source="../images/logo.png" Width="150" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                    <Button Command="{Binding CmdNavigateSchedule}">Расписание</Button>
+                    <Button Command="{Binding CmdNavigatePatients}">Пациенты</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

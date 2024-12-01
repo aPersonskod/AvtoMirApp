@@ -9,105 +9,81 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:ScheduleViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <DataTemplate x:Key="ListBoxDataTemplate">
-            <StackPanel>
-                <TextBlock Text="{Binding Patient.Fio}"/>
-                <TextBlock Text="{Binding Patient.Gmail}"/>
-                <CheckBox IsChecked="{Binding Format}" Content="Онлайн" IsHitTestVisible="False" Focusable="False"/>
-                <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True"/>
-                <Button Command="{Binding Path=DataContext.CmdNavigatePatientCard, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
-                        CommandParameter="{Binding}">Перейти</Button>
-                <Button Command="{Binding Path=DataContext.CmdUpdateSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
-                        CommandParameter="{Binding}">Изменить</Button>
-                <Button Command="{Binding Path=DataContext.CmdDeleteSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
-                        CommandParameter="{Binding}">Удалить</Button>
-            </StackPanel>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StylesResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="ListBoxDataTemplate">
+                <Border Width="360" BorderBrush="#ECECEC" BorderThickness="3" Padding="15" CornerRadius="10">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Patient.Fio}" />
+                        <TextBlock Text="{Binding Patient.Gmail}" />
+                        <CheckBox IsChecked="{Binding Format}" Content="Онлайн" IsHitTestVisible="False" Focusable="False" />
+                        <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True" />
+                        <Button
+                            Command="{Binding Path=DataContext.CmdNavigatePatientCard, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
+                            CommandParameter="{Binding}" Style="{StaticResource GreenBtnStyle}">
+                            Перейти
+                        </Button>
+                        <Button
+                            Command="{Binding Path=DataContext.CmdUpdateSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
+                            CommandParameter="{Binding}">
+                            Изменить
+                        </Button>
+                        <Button
+                            Command="{Binding Path=DataContext.CmdDeleteSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
+                            CommandParameter="{Binding}">
+                            Удалить
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Text="Диагностическая" Margin="0 0 5 0"/>
-                    <TextBlock Text="{Binding DiagPatients.Count}"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Диагностическая" Margin="0 0 5 0" />
+                    <TextBlock Text="{Binding DiagPatients.Count}" />
                 </StackPanel>
-                <ListBox Grid.Row="1" ItemsSource="{Binding DiagPatients, UpdateSourceTrigger=PropertyChanged}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
+                <ListBox Grid.Row="1" ItemsSource="{Binding DiagPatients, UpdateSourceTrigger=PropertyChanged}"
+                         MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}" BorderThickness="0"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Text="Терапия" Margin="0 0 5 0"/>
-                    <TextBlock Text="{Binding TherapyPatients.Count}"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Терапия" Margin="0 0 5 0" />
+                    <TextBlock Text="{Binding TherapyPatients.Count}" />
                 </StackPanel>
-                <ListBox Grid.Row="1" ItemsSource="{Binding TherapyPatients, UpdateSourceTrigger=PropertyChanged}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
-            </Grid>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Text="На паузе" Margin="0 0 5 0"/>
-                    <TextBlock Text="{Binding PausedPatients.Count}"/>
-                </StackPanel>
-                <ListBox Grid.Row="1" ItemsSource="{Binding PausedPatients, UpdateSourceTrigger=PropertyChanged}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
-            </Grid>
-            <Grid Grid.Column="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Text="Закончили" Margin="0 0 5 0"/>
-                    <TextBlock Text="{Binding EndPatients.Count}"/>
-                </StackPanel>
-                <ListBox Grid.Row="1" ItemsSource="{Binding EndPatients, UpdateSourceTrigger=PropertyChanged}" MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}"/>
+                <ListBox Grid.Row="1" ItemsSource="{Binding TherapyPatients, UpdateSourceTrigger=PropertyChanged}"
+                         MinHeight="200" ItemTemplate="{StaticResource ListBoxDataTemplate}" BorderThickness="0"/>
             </Grid>
         </Grid>
-        <!--<ListBox ItemsSource="{Binding Source={x:Static allInfo:AllInfo.Instance}, Path=Recordings}" MinHeight="200">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock>Пациент:</TextBlock>
-                        <TextBlock Text="{Binding Patient.Fio}"/>
-                        <TextBlock>Услуга:</TextBlock>
-                        <TextBlock Text="{Binding Service.ServiceName}"/>
-                        <TextBlock>Очно:</TextBlock>
-                        <CheckBox IsChecked="{Binding Format}" IsHitTestVisible="False" Focusable="False"/>
-                        <xctk:DateTimePicker Value="{Binding PlanDate}" IsReadOnly="True"/>
-                        <Button 
-                            Command="{Binding Path=DataContext.CmdUpdateSchedule, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCSchedule}}}"
-                            CommandParameter="{Binding}">Редактировать</Button>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Command="{Binding CmdNavigateBack}">Назад</Button>
-            <Button Grid.Column="1" Command="{Binding CmdCreateSchedule}">Новая запись</Button>
+            <Button Width="200" Grid.Column="0" Command="{Binding CmdNavigateBack}">Назад</Button>
+            <Button Width="200" Grid.Column="1" Command="{Binding CmdCreateSchedule}" Style="{StaticResource GreenBtnStyle}">Новая запись</Button>
         </Grid>
     </Grid>
 </UserControl>

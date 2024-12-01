@@ -123,6 +123,7 @@ public class NewScheduleViewModel : ViewModelBase
         //create
         if (_needToCreate)
         {
+            if(Recording.PlanDate==null || Recording.Specialist==null || Recording.Patient==null || Recording.Service==null)return;
             var newId = AllInfo.Instance.Recordings.GetNewId();
             query = $"INSERT INTO Запись (Код_записи, Дата_и_время_проведения, Код_пациента, Код_специалиста, Формат, Код_услуги) "
                     + $"VALUES ({newId}, '{Recording.PlanDate.ToUniversalTime()}', {Recording.Patient.Id}, {Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id});";

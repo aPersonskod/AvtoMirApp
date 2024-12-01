@@ -6,13 +6,56 @@
              xmlns:local="clr-namespace:HospitalProj.View"
              xmlns:viewModel="clr-namespace:HospitalProj.ViewModel"
              xmlns:allInfo="clr-namespace:HospitalProj.Connection"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:PatientCardViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Overpass"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style x:Key="GreenBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Background" Value="#74B56C"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <DataTemplate DataType="{x:Type sys:String}">
+            <TextBlock Text="{Binding}">
+                <TextBlock.Resources>
+                    <Style TargetType="{x:Type TextBlock}"/>
+                </TextBlock.Resources>
+            </TextBlock>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Основная информация">
-                <Grid>
+                <Grid Margin="5 0 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.6*"/>
                         <RowDefinition Height="0.4*"/>
@@ -25,36 +68,37 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding Recording.Patient.Fio}" FontSize="18" FontWeight="Bold"/>
-                                <StackPanel Grid.Column="1" Width="140">
-                                    <Button Command="{Binding CmdNavigateBack}">Назад</Button>
-                                    <Button Command="{Binding CmdChangeClient}">Редактировать данные</Button>
-                                </StackPanel>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.6*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Статус:" Margin="0 0 0 10"/>
-                                    <TextBlock Text="Дата следующей встречи:" Margin="0 0 0 10"/>
-                                    <TextBlock Text="Телефон:" Margin="0 0 0 10"/>
-                                    <TextBlock Text="Дата рождения:" Margin="0 0 0 10"/>
-                                    <TextBlock Text="Следующий раз:" Margin="0 0 0 10"/>
-                                    <TextBlock Text="Откуда:" Margin="0 0 0 10"/>
-                                    <TextBlock Text="Почта:" Margin="0 0 0 10"/>
+                                    <TextBlock  Text="{Binding Recording.Patient.Fio}" FontSize="30" FontWeight="Bold"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.6*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="Статус:" Margin="0 0 0 10"/>
+                                            <TextBlock Text="Дата следующей встречи:" Margin="0 0 0 10"/>
+                                            <TextBlock Text="Телефон:" Margin="0 0 0 10"/>
+                                            <TextBlock Text="Дата рождения:" Margin="0 0 0 10"/>
+                                            <TextBlock Text="Следующий раз:" Margin="0 0 0 10"/>
+                                            <TextBlock Text="Откуда:" Margin="0 0 0 10"/>
+                                            <TextBlock Text="Почта:" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="{Binding Recording.PlanDate}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="{Binding Recording.Patient.Mobile}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="{Binding Recording.Patient.BirthDay}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="{Binding MeetingInfo.NextTime}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="{Binding Recording.Patient.From}" Margin="0 0 0 10"/>
+                                            <TextBlock Text="{Binding Recording.Patient.Gmail}" Margin="0 0 0 10"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </StackPanel>
-                                <StackPanel Grid.Column="1">
-                                    <TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>
-                                    <TextBlock Text="{Binding Recording.PlanDate}" Margin="0 0 0 10"/>
-                                    <TextBlock Text="{Binding Recording.Patient.Mobile}" Margin="0 0 0 10"/>
-                                    <TextBlock Text="{Binding Recording.Patient.BirthDay}" Margin="0 0 0 10"/>
-                                    <TextBlock Text="{Binding MeetingInfo.NextTime}" Margin="0 0 0 10"/>
-                                    <TextBlock Text="{Binding Recording.Patient.From}" Margin="0 0 0 10"/>
-                                    <TextBlock Text="{Binding Recording.Patient.Gmail}" Margin="0 0 0 10"/>
+                                <StackPanel Grid.Column="1" Width="150">
+                                    <Button Command="{Binding CmdNavigateBack}">Назад</Button>
+                                    <Button Command="{Binding CmdChangeClient}" Style="{StaticResource GreenBtnStyle}">Редактировать</Button>
                                 </StackPanel>
-                                <!--{Binding Recording.Patient.Fio}-->
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -116,7 +160,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Встречи">
-                <Grid>
+                <Grid Margin="5 0 0 0">
                     <StackPanel>
                         <Grid Margin="0 0 0 10">
                             <Grid.ColumnDefinitions>
@@ -179,7 +223,7 @@
                                     <TextBox Text="{Binding SelectedMeetingInfo.NextTime}" Margin="0 0 0 10"/>
                                     <TextBlock Text="Впечатления" Margin="0 0 0 10"/>
                                     <TextBox Text="{Binding SelectedMeetingInfo.Impression}" Margin="0 0 0 10"/>
-                                    <Button Command="{Binding CmdCreateMeeting}">Создать встречу</Button>
+                                    <Button Command="{Binding CmdCreateMeeting}" Style="{StaticResource GreenBtnStyle}">Создать встречу</Button>
                                 </StackPanel>
                             </ScrollViewer>
                         </Grid>
@@ -187,7 +231,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Отчеты">
-                <Grid>
+                <Grid Margin="5 0 0 0">
                     <StackPanel>
                         <Grid Margin="0 0 0 10">
                             <Grid.ColumnDefinitions>
@@ -195,7 +239,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Собирательный отчет по встречам" FontSize="18" FontWeight="Bold"/>
-                            <StackPanel Grid.Column="1" Width="140">
+                            <StackPanel Grid.Column="1" Width="140" HorizontalAlignment="Right">
                                 <Button Command="{Binding CmdNavigateBack}">Назад</Button>
                             </StackPanel>
                         </Grid>
@@ -241,12 +285,12 @@
                                         <CheckBox IsChecked="{Binding NextTime}" Margin="0 0 0 10"/>
                                         <TextBlock Text="Впечатление от пациента:" FontWeight="DemiBold" Margin="0 0 0 10"/>
                                         <CheckBox IsChecked="{Binding Impression}" Margin="0 0 0 10"/>
-                                        <Button Command="{Binding CmdCreateReport}">Создать отчёт</Button>
+                                        <Button Command="{Binding CmdCreateReport}" Style="{StaticResource GreenBtnStyle}">Создать отчёт</Button>
                                     </StackPanel>
                                 </ScrollViewer>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>
+                                <!--<TextBlock Text="{Binding Recording.Patient.Status}" Margin="0 0 0 10"/>-->
                             </StackPanel>
                         </Grid>
                     </StackPanel>
