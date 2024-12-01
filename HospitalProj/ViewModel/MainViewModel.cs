@@ -38,7 +38,6 @@ public class MainViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _owner;
     public ICommand CmdNavigateSchedule { get; }
-    public ICommand CmdNavigateServices { get; }
     public ICommand CmdNavigatePatients { get; }
 
     public MainViewModel(MainWindowViewModel owner)
@@ -46,7 +45,6 @@ public class MainViewModel : ViewModelBase
         _owner = owner;
         _owner.HeaderText = "Главная страница";
         CmdNavigateSchedule = new RelayCommand(() => new ScheduleViewModel(_owner).Navigate());
-        CmdNavigateServices = new RelayCommand(() => new ServicesViewModel(_owner).Navigate());
         CmdNavigatePatients = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
     }
 }
@@ -131,7 +129,8 @@ public class NewScheduleViewModel : ViewModelBase
             }
             var newId = AllInfo.Instance.Recordings.GetNewId();
             query = $"INSERT INTO Запись (Код_записи, Дата_и_время_проведения, Код_пациента, Код_специалиста, Формат, Код_услуги) "
-                    + $"VALUES ({newId}, '{Recording.PlanDate:yyyy-MM-dd H:mm:ss}', {Recording.Patient.Id}, {Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id});";
+                    +$"VALUES ({newId}, '{Recording.PlanDate:yyyy-MM-dd H:mm:ss}', {Recording.Patient.Id}, "+
+                     $"{Recording.Specialist.Id}, '{Recording.Format}', {Recording.Service.Id});";
             query.DoSqlCommand();
         }
         new ScheduleViewModel(_owner).Navigate();
@@ -308,6 +307,8 @@ public class PatientCardViewModel : CmdBackViewModel
 
     #region Meetings
 
+    public List<MeetingInfo> AllMeetings { get; }
+
     private MeetingInfo _selectedMeetingInfo = new MeetingInfo();
     public MeetingInfo SelectedMeetingInfo
     {
@@ -346,7 +347,9 @@ public class PatientCardViewModel : CmdBackViewModel
     public ICommand CmdCreateReport { get; }
     private void CreateReportHandler()
     {
-        var meetings = AllInfo.Instance.MeetingInfos.Where(x => x.Recording.PlanDate >= StartDate && x.Recording.PlanDate <= EndDate);
+        var meetings = AllInfo.Instance.MeetingInfos
+            .Where(x => x.Recording.Patient.Id == Recording.Patient.Id)
+            .Where(x => x.Recording.PlanDate >= StartDate && x.Recording.PlanDate <= EndDate);
         var data = new List<List<string>>();
         var header = new List<string>();
         if(Feelings)   header.Add("Самочувствие с момента последней сессии/что изменилось");
@@ -463,6 +466,7 @@ public class PatientCardViewModel : CmdBackViewModel
         {
             MeetingInfo = AllInfo.Instance.MeetingInfos?.FirstOrDefault(x => x.Recording.Id == Recording.Id);
             Questionnaire = AllInfo.Instance.Questionnaires?.FirstOrDefault(x => x.Patient.Id == Recording.Patient.Id);
+            AllMeetings = AllInfo.Instance.MeetingInfos?.Where(x => x.Recording.Patient.Id == Recording.Patient.Id).ToList();
         }
         CmdNavigateBack = new RelayCommand(() => new PatientsViewModel(_owner).Navigate());
         CmdChangeClient = new RelayCommand(CmdChangeClientHandler);

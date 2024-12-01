@@ -26,7 +26,6 @@ public class AutoController : ControllerBase
     public IActionResult GetAll2()
     {
         var rez = _service.GetAll().FromSql($"SELECT * FROM Автомобиль").ToList();
-        //var rez = _service.GetAll();
         return Ok(rez);
     }
     
