@@ -268,7 +268,8 @@ public class NewPatientViewModel : CmdBackViewModel
         {
             var newId = AllInfo.Instance.Patients.GetNewId();
             query = $"INSERT INTO Пациент (Код_пациента, ФИО, Пол, Почта, Статус, Откуда, Дата_рождения, Номер_телефона) "
-                    + $"VALUES ({newId}, '{Patient.Fio}', '{Patient.Sex}', '{Patient.Gmail}', '{Patient.Status}', '{Patient.From}', '{Patient.BirthDay.ToUniversalTime()}', '{Patient.Mobile}');";
+                    + $"VALUES ({newId}, '{Patient.Fio}', '{Patient.Sex}', '{Patient.Gmail}', '{Patient.Status}', '{Patient.From}', '{Patient.BirthDay.ToUniversalTime()}', "+
+                    $"'{Patient.Mobile}');";
             query.DoSqlCommand();
             return newId;
         }
@@ -335,7 +336,8 @@ public class PatientCardViewModel : CmdBackViewModel
         {
             var newId = AllInfo.Instance.MeetingInfos.GetNewId();
             query = $"INSERT INTO Информация_о_встрече (Код_встречи, Самочуствие, Симптомы, Интервенции, Цитаты, ДЗ, Обратная_связь, На_следующий_раз, Впечатления, Код_записи) "
-                    + $"VALUES ({newId}, '{SelectedMeetingInfo.Feelings}', '{SelectedMeetingInfo.Symptoms}', '{SelectedMeetingInfo.Intervents}', '{SelectedMeetingInfo.Quotes}', '{SelectedMeetingInfo.HomeWork}', '{SelectedMeetingInfo.FeedBack}', '{SelectedMeetingInfo.NextTime}', '{SelectedMeetingInfo.Impression}', {Recording.Id});";
+                    + $"VALUES ({newId}, '{SelectedMeetingInfo.Feelings}', '{SelectedMeetingInfo.Symptoms}', '{SelectedMeetingInfo.Intervents}', '{SelectedMeetingInfo.Quotes}', "
+                    +$"'{SelectedMeetingInfo.HomeWork}', '{SelectedMeetingInfo.FeedBack}', '{SelectedMeetingInfo.NextTime}', '{SelectedMeetingInfo.Impression}', {Recording.Id});";
             query.DoSqlCommand();
         }
     }

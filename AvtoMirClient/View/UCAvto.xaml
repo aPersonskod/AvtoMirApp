@@ -7,7 +7,7 @@
              xmlns:viewModel="clr-namespace:AvtoMirClient.ViewModel"
              d:DataContext="{d:DesignInstance Type={x:Type viewModel:AvtoCatalogViewModel}}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,38 +22,82 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Style="{StaticResource HeaderStyle}">Каталог автомобилей</TextBlock>
-        <ListView Grid.Row="1" ItemsSource="{Binding Autos, UpdateSourceTrigger=PropertyChanged}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.7*"/>
-                            <ColumnDefinition Width="0.3*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding Image}" MaxWidth="300"/>
-                        <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="0 0 3 0" Text="{Binding Type.Mark.Mark}"/>
-                                <TextBlock Margin="0 0 3 0" Text="{Binding Type.Model}"/>
-                                <TextBlock Margin="0 0 3 0" Text="{Binding CreationYear}"/>
-                                <TextBlock Margin="0 0 3 0" Text="г."/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="2" CornerRadius="20" BorderBrush="Black" Padding="5 5 5 5">
+                    <StackPanel Margin="0 0 0 10">
+                        <TextBlock Text="Фильтр:" FontSize="18" FontWeight="Bold" Margin="2 0 0 0"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="От:" FontWeight="Bold" Margin="2 0 0 0"/>
+                                <TextBox Margin="2 0 2 0" Text="{Binding FromPriceFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Регистрационный номер: "/>
-                                <TextBlock Text="{Binding RegNumber}"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="До:" FontWeight="Bold" Margin="2 0 0 0"/>
+                                <TextBox Margin="2 0 2 0" Text="{Binding ToPriceFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="{Binding Price}"/>
-                                <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text=" р."/>
+                        </Grid>
+                        <TextBlock Text="Марка:" FontSize="18" FontWeight="Bold" Margin="2 0 0 0"/>
+                        <ComboBox ItemsSource="{Binding AllAutoMarks}" DisplayMemberPath="Mark" Margin="2 0 2 0"
+                                  SelectedItem="{Binding SelectedAutoMark, Mode=TwoWay}"/>
+                        <TextBlock Text="Модель:" FontSize="18" FontWeight="Bold" Margin="2 0 0 0"/>
+                        <ComboBox ItemsSource="{Binding AutoTypes}" DisplayMemberPath="Model" Margin="2 0 2 0"
+                                  SelectedItem="{Binding SelectedAutoType, Mode=TwoWay}" IsEnabled="{Binding IsAutoModelEnabled, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Grid Margin="0 10 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Margin="2 0 2 0" Command="{Binding CmdConfirmFilter}" Content="Применить"/>
+                            <Button Grid.Column="1" Margin="2 0 2 0" Command="{Binding CmdResetFilter}" Content="Отменить"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <ListView Grid.Column="1" ItemsSource="{Binding Autos, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Image}" MaxWidth="300"/>
+                            <StackPanel Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="0 0 3 0" Text="{Binding Type.Mark.Mark}"/>
+                                    <TextBlock Margin="0 0 3 0" Text="{Binding Type.Model}"/>
+                                    <TextBlock Margin="0 0 3 0" Text="{Binding CreationYear}"/>
+                                    <TextBlock Margin="0 0 3 0" Text="г."/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Регистрационный номер: "/>
+                                    <TextBlock Text="{Binding RegNumber}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text="{Binding Price}"/>
+                                    <TextBlock Margin="0 0 3 0" Style="{StaticResource HeaderStyle}" Text=" р."/>
+                                </StackPanel>
+                                <Button 
+                                    Command="{Binding Path=DataContext.CmdNavigateToAvto, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCAvto}}}"
+                                    CommandParameter="{Binding}">Перейти</Button>
                             </StackPanel>
-                            <Button 
-                                Command="{Binding Path=DataContext.CmdNavigateToAvto, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UCAvto}}}"
-                                CommandParameter="{Binding}">Перейти</Button>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Command="{Binding CmdBack}" Width="120" Margin="5">Главное меню</Button>
             <Button Command="{Binding CmdNavigateToNewAvto}" Width="160" Margin="5">Добавить автомобиль</Button>
