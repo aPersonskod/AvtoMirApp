@@ -171,7 +171,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="{Binding Recording.Patient.Fio}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10"/>
-                                <ComboBox ItemsSource="{Binding AllMeetings}"
+                                <ComboBox ItemsSource="{Binding AllMeetings}" ItemStringFormat="{}{0:dd.MM.yyyy HH:mm}"
                                           DisplayMemberPath="Recording.PlanDate" Width="200" HorizontalAlignment="Left"
                                           SelectedItem="{Binding SelectedMeetingInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
@@ -189,21 +189,21 @@
                                     <StackPanel>
                                         <TextBlock Text="Самочувствие с момента последней сессии/" FontWeight="DemiBold"/>
                                         <TextBlock Text="что изменилось:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.Feelings}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Feelings}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="Беспокоящие симптомы/поведение:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.Symptoms}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Symptoms}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="Интервенции на сессии:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.Intervents}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Intervents}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="Важные цитаты:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.Quotes}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Quotes}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="Домашнее задание + прогноз выполнения %:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.HomeWork}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.HomeWork}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="Обратная связь в конце сессии:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.FeedBack}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.FeedBack}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="На следующий раз:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.NextTime}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.NextTime}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                         <TextBlock Text="Впечатление от пациента:" FontWeight="DemiBold" Margin="0 0 0 10"/>
-                                        <TextBlock Text="{Binding SelectedMeetingInfo.Impression}" Margin="0 0 0 10"/>
+                                        <TextBlock Text="{Binding SelectedMeetingInfo.Impression}" Margin="0 0 0 10" TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </ScrollViewer>
                             </Grid>
